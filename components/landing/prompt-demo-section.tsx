@@ -11,7 +11,7 @@ const PROMPT_TEXT =
 
 const TYPE_INTERVAL_MS = 42;
 const GENERATING_DURATION_MS = 4200;
-const LINK_PREVIEW_URL = "";
+const LINK_PREVIEW_URL = "https://outist.app/share/096f5577dcd346bf84ebb15e79648f37?v=1778313495";
 const PDF_PREVIEW_URL = "";
 
 type DemoPhase = "idle" | "recording" | "generating" | "complete";
@@ -50,21 +50,6 @@ export function PromptDemoSection() {
       }
     };
 
-    const playVoice = () => {
-      if (!("speechSynthesis" in window)) {
-        return;
-      }
-
-      window.speechSynthesis.cancel();
-
-      const utterance = new SpeechSynthesisUtterance(PROMPT_TEXT.trim());
-      utterance.rate = 0.96;
-      utterance.pitch = 1;
-      utterance.volume = 0.95;
-
-      window.speechSynthesis.speak(utterance);
-    };
-
     const startPromptFlow = () => {
       if (hasPlayedRef.current) {
         return;
@@ -73,7 +58,6 @@ export function PromptDemoSection() {
       hasPlayedRef.current = true;
       setTypedPrompt("");
       setPhase("recording");
-      playVoice();
 
       let index = 0;
       stopTyping();
@@ -108,9 +92,6 @@ export function PromptDemoSection() {
       observer.disconnect();
       stopTyping();
       stopGenerating();
-      if ("speechSynthesis" in window) {
-        window.speechSynthesis.cancel();
-      }
     };
   }, []);
 
@@ -118,7 +99,8 @@ export function PromptDemoSection() {
     <section
       id="try"
       ref={sectionRef}
-      className="relative flex min-h-[760px] flex-col items-center bg-white px-5 py-16 text-center sm:min-h-[820px] sm:py-20 lg:min-h-[900px] lg:py-7"
+      data-scroll-reveal
+      className="scroll-reveal relative z-10 flex min-h-[760px] flex-col items-center bg-white/82 px-5 py-16 text-center sm:min-h-[820px] sm:py-20 lg:min-h-[900px] lg:py-7"
     >
       <h2 className="w-full max-w-[1180px] text-balance text-[36px] font-medium leading-[1.12] text-sherpa-ink sm:text-[46px] sm:leading-[1.25] lg:leading-[1.5]">
         Easy Prompt to Top Quality Proposal
@@ -147,7 +129,7 @@ export function PromptDemoSection() {
                 </div>
 
                 <p
-                  className="min-h-[178px] w-full whitespace-pre-wrap text-base font-normal leading-[1.85] text-sherpa-ink"
+                  className="min-h-[178px] w-full whitespace-pre-wrap text-[18px] font-normal leading-[1.85] text-sherpa-ink"
                   aria-live="polite"
                 >
                   {typedPrompt}
@@ -225,7 +207,7 @@ function GeneratedProposalFrame() {
           </p>
         </div>
 
-        <div className="flex flex-wrap items-center gap-4 md:gap-6">
+        <div className="flex flex-wrap items-center gap-4 pb-2 pr-3 md:gap-6 md:pr-4">
           <SegmentedControl
             items={[
               { icon: Globe, label: "Link", value: "link", active: outputType === "link" },
@@ -277,7 +259,7 @@ function SegmentedControl({
   return (
     <div
       className={cn(
-        "flex shrink-0 items-center rounded-sherpa-pill border border-[#cfd5de] bg-white p-1 transition-opacity duration-medium",
+        "flex shrink-0 items-center rounded-sherpa-pill border border-sherpa-ink bg-white p-1 shadow-[1px_2px_0_#202c3d] transition-opacity duration-medium",
         disabled && "pointer-events-none opacity-40",
       )}
       aria-disabled={disabled}

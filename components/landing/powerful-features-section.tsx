@@ -1,6 +1,6 @@
 "use client";
 
-import { Lightbulb, Link2, Mic, Sparkles } from "lucide-react";
+import { Brain, Clock3, Globe2, Image, Laptop, MessageSquare, Palette } from "lucide-react";
 import type { ComponentType } from "react";
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
@@ -15,32 +15,53 @@ type FeatureSlide = {
 
 const FEATURES: FeatureSlide[] = [
   {
-    title: "Brain Storm Ideas",
-    copy: "Create ready-to-share trip ideas from a simple brief, then shape them into a strong proposal without starting from a blank page.",
-    icon: Lightbulb,
+    title: "10-Minute Setup",
+    copy: "Upload your existing proposals in any format. Sherpa extract the content so you can start creating proposals quickly.",
+    icon: Clock3,
     accent: "text-[#ff5f5f]",
     cardPosition: "lg:right-[-112px] lg:top-[30%]",
   },
   {
-    title: "Voice Chat",
-    copy: "Speak the itinerary details naturally and Sherpa turns the conversation into structured proposal content in seconds.",
-    icon: Mic,
+    title: "Brainstorm Ideas",
+    copy: "Ask Sherpa to shape trip ideas, calculate per-person cost, refine packages, or improve proposal content before you share it.",
+    icon: Brain,
     accent: "text-[#18b9e5]",
     cardPosition: "lg:left-[-112px] lg:top-[33%]",
   },
   {
-    title: "AI Image Generation",
-    copy: "Generate destination-led visuals for proposals, so every plan feels polished before the final share link or PDF is sent.",
-    icon: Sparkles,
+    title: "Effortless Pictures",
+    copy: "Find stunning trip visuals in seconds. Sherpa suggests multiple image options, so you can choose the best one for every destination or day.",
+    icon: Image,
     accent: "text-[#c6e943]",
     cardPosition: "lg:right-[-109px] lg:top-[17%]",
   },
   {
-    title: "Custom Links",
-    copy: "Share branded links that work beautifully on desktop and mobile, with every proposal ready for customer review.",
-    icon: Link2,
+    title: "Custom Branding",
+    copy: "Make every proposal feel like your brand. Adjust logo, colors, typography, links, and proposal style without redesigning from scratch.",
+    icon: Palette,
     accent: "text-[#337dff]",
     cardPosition: "lg:left-[-117px] lg:top-[43%]",
+  },
+  {
+    title: "Close Loops Faster",
+    copy: "Turn leads from WhatsApp, email, Instagram, or website forms into ready-to-share proposals without jumping between multiple tools.",
+    icon: MessageSquare,
+    accent: "text-[#ff9f43]",
+    cardPosition: "lg:right-[-112px] lg:top-[35%]",
+  },
+  {
+    title: "Global Client Ready",
+    copy: "Create proposals in your client’s language and currency with real-time conversion support, so international enquiries feel local and clear.",
+    icon: Globe2,
+    accent: "text-[#13c2a3]",
+    cardPosition: "lg:left-[-112px] lg:top-[20%]",
+  },
+  {
+    title: "Works Everywhere",
+    copy: "Create, review, and share proposals across mobile, tablet, and laptop. Send them as a live URL or export them as a polished PDF.",
+    icon: Laptop,
+    accent: "text-[#8f5bff]",
+    cardPosition: "lg:right-[-109px] lg:top-[43%]",
   },
 ];
 
@@ -94,7 +115,8 @@ export function PowerfulFeaturesSection() {
     <section
       id="features"
       ref={sectionRef}
-      className="relative h-[460vh] bg-white px-5 py-16 sm:py-20"
+      data-scroll-reveal
+      className="scroll-reveal relative z-10 h-[680vh] bg-white/82 px-5 py-16 sm:py-20"
     >
       <div className="sticky top-0 flex min-h-screen w-full flex-col items-center justify-start overflow-hidden pt-16 sm:pt-20 lg:pt-[72px]">
         <h2 className="w-full max-w-[1270px] text-center text-[34px] font-medium leading-[1.2] text-sherpa-ink sm:text-[46px] sm:leading-[1.5]">
@@ -110,6 +132,7 @@ export function PowerfulFeaturesSection() {
               slideNumber={index + 1}
             />
           ))}
+          <FeatureProgressIndicator activeSlide={activeSlide} totalSlides={FEATURES.length} />
         </div>
       </div>
     </section>
@@ -151,7 +174,7 @@ function FeatureSlideView({
 
         <div
           className={cn(
-            "absolute left-1/2 top-[56%] w-[min(452px,calc(100vw-40px))] -translate-x-1/2 rounded-[30px] bg-white p-7 text-left shadow-[0_6px_6px_rgba(0,0,0,0.1)] transition-all duration-700 ease-sherpa sm:p-8 lg:left-auto lg:translate-x-0",
+            "absolute left-1/2 top-[56%] w-[min(452px,calc(100vw-40px))] -translate-x-1/2 rounded-[30px] border border-sherpa-ink bg-white p-7 text-left shadow-[1px_4px_0_#000] transition-all duration-700 ease-sherpa sm:p-8 lg:left-auto lg:translate-x-0",
             slide.cardPosition,
             active
               ? "translate-y-0 opacity-100 blur-0 delay-200"
@@ -173,5 +196,40 @@ function FeatureSlideView({
         </div>
       </div>
     </article>
+  );
+}
+
+function FeatureProgressIndicator({
+  activeSlide,
+  totalSlides,
+}: {
+  activeSlide: number;
+  totalSlides: number;
+}) {
+  return (
+    <div
+      className="absolute bottom-0 left-1/2 z-10 flex -translate-x-1/2 items-center gap-2 rounded-sherpa-pill border border-[#dfe3e8] bg-white/75 px-3 py-2 shadow-[0_6px_18px_rgba(32,44,61,0.08)] backdrop-blur-sm lg:bottom-auto lg:left-auto lg:right-[-68px] lg:top-[318px] lg:translate-x-0 lg:flex-col lg:px-2 lg:py-3"
+      aria-label={`Feature slide ${activeSlide + 1} of ${totalSlides}`}
+    >
+      {Array.from({ length: totalSlides }).map((_, index) => {
+        const isActive = activeSlide === index;
+
+        return (
+          <span
+            key={index}
+            className={cn(
+              "block rounded-sherpa-pill bg-sherpa-ink/20 transition-all duration-500 ease-sherpa",
+              isActive
+                ? "h-2 w-8 bg-sherpa-ink lg:h-8 lg:w-2"
+                : "h-2 w-2 lg:h-2 lg:w-2",
+            )}
+            aria-hidden="true"
+          />
+        );
+      })}
+      <span className="sr-only">
+        Slide {activeSlide + 1} of {totalSlides}
+      </span>
+    </div>
   );
 }

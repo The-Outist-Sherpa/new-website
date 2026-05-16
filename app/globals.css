@@ -3,6 +3,8 @@
 @tailwind utilities;
 
 :root {
+  --ambient-x: 50vw;
+  --ambient-y: 40vh;
   --color-brand: #ccf35f;
   --color-brand-hover: #c4f24c;
   --color-brand-pressed: #bbed43;
@@ -53,6 +55,118 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+.global-gradient-wash {
+  pointer-events: none;
+  position: fixed;
+  inset: -18%;
+  z-index: 0;
+  background:
+    radial-gradient(circle at 16% 20%, rgba(204, 243, 95, 0.5), transparent 34%),
+    radial-gradient(circle at 82% 26%, rgba(22, 87, 255, 0.36), transparent 35%),
+    radial-gradient(circle at 52% 82%, rgba(255, 231, 61, 0.42), transparent 36%);
+  filter: blur(20px);
+  mix-blend-mode: multiply;
+  opacity: 0.38;
+  transform: translate3d(0, 0, 0);
+  animation: global-gradient-drift 24s ease-in-out infinite alternate;
+}
+
+.ambient-mouse-effect {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(circle, rgba(32, 44, 61, 0.12) 1px, transparent 1.25px),
+    radial-gradient(520px circle at var(--ambient-x) var(--ambient-y), rgba(204, 243, 95, 0.22), rgba(204, 243, 95, 0.08) 36%, transparent 70%),
+    radial-gradient(360px circle at calc(var(--ambient-x) + 110px) calc(var(--ambient-y) - 70px), rgba(22, 201, 232, 0.14), transparent 68%);
+  background-size: 18px 18px, auto, auto;
+  background-position: center, center, center;
+  mix-blend-mode: multiply;
+  opacity: 0.82;
+  transition: opacity 220ms ease;
+}
+
+.ambient-mouse-effect::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(32, 44, 61, 0.32) 1px, transparent 1.35px);
+  background-position: center;
+  background-size: 18px 18px;
+  mask-image: radial-gradient(360px circle at var(--ambient-x) var(--ambient-y), #000 0%, rgba(0, 0, 0, 0.76) 34%, transparent 72%);
+  -webkit-mask-image: radial-gradient(360px circle at var(--ambient-x) var(--ambient-y), #000 0%, rgba(0, 0, 0, 0.76) 34%, transparent 72%);
+  opacity: 0.55;
+}
+
+.ambient-mouse-effect::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(300px circle at var(--ambient-x) var(--ambient-y), rgba(204, 243, 95, 0.34), transparent 68%),
+    radial-gradient(180px circle at calc(var(--ambient-x) - 70px) calc(var(--ambient-y) + 50px), rgba(255, 255, 255, 0.42), transparent 70%);
+  filter: blur(18px);
+  opacity: 0.5;
+}
+
+.hero-blue-gradient-text {
+  animation: hero-blue-gradient-shift 5.8s ease-in-out infinite;
+  background: linear-gradient(110deg, #2447ff, #16c9e8, #315dff, #12bff0, #2447ff);
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero-bolt-icon {
+  animation: hero-bolt-spark 2.2s ease-in-out infinite;
+  filter: drop-shadow(0 0 0 rgba(18, 191, 240, 0));
+}
+
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(34px);
+  transition:
+    opacity 720ms var(--ease-standard),
+    transform 720ms var(--ease-standard);
+  will-change: opacity, transform;
+}
+
+.scroll-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-reveal-child {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 620ms var(--ease-standard),
+    transform 620ms var(--ease-standard);
+  will-change: opacity, transform;
+}
+
+.scroll-reveal.is-visible .scroll-reveal-child {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal,
+  .scroll-reveal-child {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .global-gradient-wash,
+  .hero-blue-gradient-text,
+  .hero-bolt-icon {
+    animation: none;
+  }
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -62,6 +176,54 @@ button,
 input,
 select {
   font: inherit;
+}
+
+@keyframes global-gradient-drift {
+  0% {
+    transform: translate3d(-1.6%, -1%, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(1.2%, 1.5%, 0) scale(1.025);
+  }
+  100% {
+    transform: translate3d(2%, -0.8%, 0) scale(1.01);
+  }
+}
+
+@keyframes hero-blue-gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes hero-bolt-spark {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 0 rgba(18, 191, 240, 0));
+    stroke-width: 2.25;
+    transform: translateY(0.09em) scale(1);
+  }
+  42% {
+    filter: drop-shadow(0 0 6px rgba(18, 191, 240, 0.34));
+    stroke-width: 2.8;
+    transform: translateY(0.09em) scale(1.04);
+  }
+  48% {
+    filter: drop-shadow(0 0 11px rgba(36, 71, 255, 0.45));
+    stroke-width: 3;
+    transform: translateY(0.09em) scale(0.98);
+  }
+  56% {
+    filter: drop-shadow(0 0 5px rgba(18, 191, 240, 0.26));
+    stroke-width: 2.45;
+    transform: translateY(0.09em) scale(1.02);
+  }
 }
 
 ::selection {

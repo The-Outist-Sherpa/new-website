@@ -1,6 +1,6 @@
 "use client";
 
-import { FileText, Globe, Mic, MonitorCheck, Smartphone, Zap } from "lucide-react";
+import { FileText, Globe, Mic, Zap } from "lucide-react";
 import Image from "next/image";
 import type { ComponentType } from "react";
 import { useEffect, useRef, useState } from "react";
@@ -16,7 +16,6 @@ const PDF_PREVIEW_URL = "";
 
 type DemoPhase = "idle" | "recording" | "generating" | "complete";
 type OutputType = "link" | "pdf";
-type PreviewViewport = "desktop" | "mobile";
 
 export function PromptDemoSection() {
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -213,7 +212,6 @@ function StatusText({ phase }: { phase: DemoPhase }) {
 
 function GeneratedProposalFrame() {
   const [outputType, setOutputType] = useState<OutputType>("link");
-  const [previewViewport, setPreviewViewport] = useState<PreviewViewport>("desktop");
   const isPdf = outputType === "pdf";
   const previewUrl = isPdf ? PDF_PREVIEW_URL : LINK_PREVIEW_URL;
 
@@ -235,33 +233,14 @@ function GeneratedProposalFrame() {
             ]}
             onSelect={(value) => setOutputType(value as OutputType)}
           />
-          <SegmentedControl
-            disabled={isPdf}
-            items={[
-              { icon: MonitorCheck, label: "Desktop", value: "desktop", active: previewViewport === "desktop" },
-              { icon: Smartphone, label: "Mobile", value: "mobile", active: previewViewport === "mobile" },
-            ]}
-            onSelect={(value) => {
-              if (!isPdf) {
-                setPreviewViewport(value as PreviewViewport);
-              }
-            }}
-          />
         </div>
       </div>
 
       <div className="flex h-[420px] w-full items-center justify-center rounded-[20px] border border-[#cfd5de] bg-[#f0f3f7] px-4 py-3 sm:h-[520px] lg:h-[638px]">
-        <div
-          className={cn(
-            "relative h-full overflow-hidden rounded-[16px] bg-white shadow-[0_1px_0_rgba(32,44,61,0.05)] transition-all duration-500 ease-sherpa",
-            isPdf || previewViewport === "desktop"
-              ? "w-full"
-              : "w-[min(100%,360px)] border border-[#dfe3e8]",
-          )}
-        >
+        <div className="relative h-full w-full overflow-hidden rounded-[16px] bg-white shadow-[0_1px_0_rgba(32,44,61,0.05)] transition-all duration-500 ease-sherpa">
           {previewUrl ? (
             <iframe
-              key={`${outputType}-${previewViewport}`}
+              key={outputType}
               title={isPdf ? "Generated proposal PDF" : "Generated proposal link preview"}
               src={previewUrl}
               className="h-full w-full border-0 bg-white"

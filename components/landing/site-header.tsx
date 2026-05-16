@@ -1,9 +1,15 @@
+"use client";
+
 import Image from "next/image";
 import { navItems } from "@/lib/content";
 import { cn } from "@/lib/utils";
-import { SherpaButton } from "./sherpa-button";
+import { OutistButton } from "./outist-button";
 
 export function SiteHeader() {
+  const openDemoModal = () => {
+    window.dispatchEvent(new CustomEvent("open-demo-modal"));
+  };
+
   return (
     <header className="absolute inset-x-0 top-0 z-20">
       <div className="mx-auto w-full max-w-[1248px] px-5 pt-6 md:px-6 md:pt-8">
@@ -36,12 +42,14 @@ export function SiteHeader() {
           </div>
 
           <div className={cn("flex shrink-0 items-center gap-3 sm:gap-5")}>
-            <SherpaButton asChild className="hidden sm:inline-flex">
+            <OutistButton asChild className="hidden sm:inline-flex">
               <a href="#try">Try for Free</a>
-            </SherpaButton>
-            <SherpaButton asChild variant="secondary" className="px-5 sm:px-6">
-              <a href="#demo">Demo</a>
-            </SherpaButton>
+            </OutistButton>
+            <OutistButton asChild variant="secondary" className="px-5 sm:px-6">
+              <button type="button" onClick={openDemoModal}>
+                Book Demo
+              </button>
+            </OutistButton>
           </div>
         </nav>
       </div>

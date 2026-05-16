@@ -2,19 +2,19 @@ import { Slot } from "@radix-ui/react-slot";
 import type { ComponentPropsWithoutRef } from "react";
 import { cn } from "@/lib/utils";
 
-type SherpaButtonProps = ComponentPropsWithoutRef<"button"> & {
+type OutistButtonProps = ComponentPropsWithoutRef<"button"> & {
   asChild?: boolean;
   size?: "nav" | "hero";
   variant?: "primary" | "secondary";
 };
 
-export function SherpaButton({
+export function OutistButton({
   asChild = false,
   className,
   size = "nav",
   variant = "primary",
   ...props
-}: SherpaButtonProps) {
+}: OutistButtonProps) {
   const Comp = asChild ? Slot : "button";
 
   return (

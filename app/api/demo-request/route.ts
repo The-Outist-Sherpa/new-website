@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
 
   const subject = `[${fullName}] The Outist - Demo Requiry`;
   const text = [
-    "New demo request from Sherpa landing page.",
+    "New demo request from The Outist landing page.",
     "",
     `Fullname: ${fullName}`,
     `Mobile Number: ${countryCode} ${mobileNumber}`,

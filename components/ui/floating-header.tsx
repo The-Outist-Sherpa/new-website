@@ -19,11 +19,11 @@ export function FloatingHeader({ theme = "dark" }: { theme?: "light" | "dark" })
                 ? "hover:bg-white/10 focus-visible:ring-white/60"
                 : "hover:bg-black/6 focus-visible:ring-black/30",
             )}
-            aria-label="Sherpa home"
+            aria-label="The Outist home"
           >
             <Image
               src="/assets/outist-logo.svg"
-              alt="Sherpa logo"
+              alt="The Outist logo"
               width={140}
               height={36}
               className={cn(

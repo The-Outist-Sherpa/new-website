@@ -16,21 +16,21 @@ type FeatureSlide = {
 const FEATURES: FeatureSlide[] = [
   {
     title: "10-Minute Setup",
-    copy: "Upload your existing proposals in any format. Sherpa extract the content so you can start creating proposals quickly.",
+    copy: "Upload your existing proposals in any format. The Outist extracts the content so you can start creating proposals quickly.",
     icon: Clock3,
     accent: "text-[#ff5f5f]",
     cardPosition: "lg:right-[-112px] lg:top-[30%]",
   },
   {
     title: "Brainstorm Ideas",
-    copy: "Ask Sherpa to shape trip ideas, calculate per-person cost, refine packages, or improve proposal content before you share it.",
+    copy: "Ask The Outist to shape trip ideas, calculate per-person cost, refine packages, or improve proposal content before you share it.",
     icon: Brain,
     accent: "text-[#18b9e5]",
     cardPosition: "lg:left-[-112px] lg:top-[33%]",
   },
   {
     title: "Effortless Pictures",
-    copy: "Find stunning trip visuals in seconds. Sherpa suggests multiple image options, so you can choose the best one for every destination or day.",
+    copy: "Find stunning trip visuals in seconds. The Outist suggests multiple image options, so you can choose the best one for every destination or day.",
     icon: Image,
     accent: "text-[#c6e943]",
     cardPosition: "lg:right-[-109px] lg:top-[17%]",

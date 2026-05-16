@@ -1,5 +1,5 @@
 import { Zap } from "lucide-react";
-import { SherpaButton } from "./sherpa-button";
+import { OutistButton } from "./outist-button";
 
 export function HeroSection() {
   return (
@@ -30,9 +30,9 @@ export function HeroSection() {
       </p>
 
       <div className="mt-10 flex w-full justify-center sm:mt-12">
-        <SherpaButton asChild size="hero">
+        <OutistButton asChild size="hero">
           <a href="#try">Try for Free</a>
-        </SherpaButton>
+        </OutistButton>
       </div>
     </div>
   );

@@ -15,9 +15,49 @@ const outfit = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Sherpa | AI Travel Proposal Engine",
+  metadataBase: new URL("https://sherpa-landing-pi.vercel.app"),
+  title: "The Outist — AI Travel Proposal Builder for Travel Teams",
   description:
-    "Sherpa helps travel teams generate beautiful client-ready travel proposals with itinerary, visuals, weather, maps, and pricing in minutes.",
+    "Create beautiful client-ready travel proposals in minutes. The Outist helps travel agents, tour operators, DMCs, and experience hosts generate itineraries, images, maps, pricing, and shareable proposals faster.",
+  keywords: [
+    "AI travel proposal builder",
+    "travel proposal software",
+    "travel itinerary generator",
+    "AI proposal generator",
+    "tour operator software",
+    "travel agent proposal tool",
+    "DMC proposal software",
+    "itinerary proposal builder",
+    "travel agency automation",
+    "client proposal builder",
+  ],
+  icons: {
+    icon: "/favicon.png",
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",
+  },
+  openGraph: {
+    title: "The Outist — AI Travel Proposal Builder",
+    description:
+      "Turn travel enquiries into beautiful client-ready proposals with itinerary, images, maps, pricing, and shareable links.",
+    type: "website",
+    siteName: "The Outist",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "The Outist AI Travel Proposal Builder",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "The Outist — AI Travel Proposal Builder",
+    description:
+      "Create client-ready travel proposals in minutes with AI-powered itineraries, images, maps, and pricing.",
+    images: ["/og-image.png"],
+  },
 };
 
 export default function RootLayout({

@@ -5,7 +5,7 @@ export function AudienceSection() {
     <section
       id="audience"
       data-scroll-reveal
-      className="scroll-reveal relative z-10 bg-white/82 px-5 py-16 sm:py-20 lg:py-24"
+      className="scroll-reveal relative z-10 bg-white/82 px-5 pb-16 pt-8 sm:pb-20 sm:pt-10 lg:pb-24 lg:pt-12"
     >
       <div className="mx-auto flex w-full max-w-[1180px] flex-col items-center gap-10 text-center sm:gap-[47px]">
         <h2 className="text-[34px] font-medium leading-[1.08] text-black sm:text-[42px] lg:text-[48px]">

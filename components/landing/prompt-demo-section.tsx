@@ -155,7 +155,7 @@ export function PromptDemoSection() {
             )}
           >
             <div className="flex w-full max-w-[450px] flex-col items-center gap-6">
-              <SherpaOrb active={isOrbActive} />
+              <OutistOrb active={isOrbActive} />
               <StatusText phase={phase} />
             </div>
           </div>
@@ -290,14 +290,14 @@ function SegmentedControl({
   );
 }
 
-function SherpaOrb({ active }: { active: boolean }) {
+function OutistOrb({ active }: { active: boolean }) {
   return (
     <div
       className={cn(
         "sherpa-orb relative h-[120px] w-[120px] shrink-0",
         active && "is-listening",
       )}
-      aria-label="Sherpa is listening"
+      aria-label="The Outist is listening"
       role="img"
     >
       <span className="orb-glow" aria-hidden="true" />

@@ -50,7 +50,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Captcha verification failed" }, { status: 400 });
   }
 
-  const subject = `[${fullName}] The Outist - Demo Requiry`;
+  const subject = `[${fullName}] The Outist - Demo Inquiry`;
   const text = [
     "New demo request from The Outist landing page.",
     "",

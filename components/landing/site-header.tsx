@@ -15,6 +15,7 @@ import {
 import { OutistButton } from "./outist-button";
 
 const GOOGLE_FORM_URL = "https://forms.gle/tfSK7WaLfgPHapza7";
+const BETA_APP_URL = "https://beta.outist.app";
 
 export function SiteHeader() {
   return (
@@ -50,7 +51,7 @@ export function SiteHeader() {
 
           <div className={cn("hidden shrink-0 items-center gap-3 lg:flex")}>
             <OutistButton asChild className="hidden sm:inline-flex">
-              <a href={GOOGLE_FORM_URL} target="_blank" rel="noreferrer">
+              <a href={BETA_APP_URL} target="_blank" rel="noreferrer">
                 Start for Free
               </a>
             </OutistButton>
@@ -63,7 +64,7 @@ export function SiteHeader() {
 
           <div className="ml-auto flex items-center gap-3 lg:hidden">
             <OutistButton asChild className="min-h-11 px-5 text-[15px]">
-              <a href={GOOGLE_FORM_URL} target="_blank" rel="noreferrer">
+              <a href={BETA_APP_URL} target="_blank" rel="noreferrer">
                 Start Free
               </a>
             </OutistButton>

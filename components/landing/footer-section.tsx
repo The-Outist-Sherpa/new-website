@@ -16,9 +16,9 @@ const contactActions = [
     widthClass: "sm:w-[240px]",
   },
   {
-    href: "mailto:tarun.tyagi@theoutist.com",
+    href: "mailto:hello@theoutist.com",
     icon: Mail,
-    label: "tarun.tyagi@theoutist.com",
+    label: "hello@theoutist.com",
     widthClass: "sm:w-[324px]",
   },
 ];
@@ -33,8 +33,11 @@ export function FooterSection() {
       <div className="mx-auto flex w-full max-w-[1280px] flex-col items-center gap-16 lg:gap-20">
         <div className="flex w-full flex-col items-center justify-center gap-10 sm:gap-12">
           <h2 className="text-center text-[34px] font-medium leading-[1.08] sm:text-[42px] lg:text-[48px]">
-            Reach out to us
+            Here to help you grow - before and after you sign up!
           </h2>
+          <p className="max-w-[880px] text-center text-[18px] font-normal leading-[1.45] text-white/72 sm:text-[20px]">
+            Reach out for live demo, queries, onboarding support, feedback, or custom business requirements
+          </p>
 
           <div className="flex w-full flex-col items-center justify-center gap-5 md:flex-row md:flex-wrap lg:gap-10">
             {contactActions.map((action) => {

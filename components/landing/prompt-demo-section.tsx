@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
 const PROMPT_TEXT =
-  "Create a proposal for Manali Trip with 5 Adults for 7Days with 4-Star Hotel Accommodation, Premium Transport options, All Food Included. Start point is Chennai, Exclude Flight cost. ";
+  "Modify the ‘Majestic Zanskar’ itinerary from our catalogue for Ms. Noa Levi. Group size 8. Include an acclimatization hike to Patalsu on Day 2. Meals on MAP on Day 1 and 8, remaining days AP. Cost per person is INR 1,58,000 (incl 5% GST).";
 
 const TYPE_INTERVAL_MS = 42;
 const GENERATING_DURATION_MS = 4200;

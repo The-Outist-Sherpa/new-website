@@ -1,7 +1,7 @@
 "use client";
 
 import NextImage from "next/image";
-import { Brain, Clock3, Globe2, Image, Laptop, MessageSquare, Palette } from "lucide-react";
+import { Brain, Clock3, Globe2, Image, Laptop, Palette } from "lucide-react";
 import type { ComponentType } from "react";
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
@@ -18,8 +18,8 @@ type FeatureSlide = {
 
 const FEATURES: FeatureSlide[] = [
   {
-    title: "10-Minute Setup",
-    copy: "Upload your existing proposals in any format. The Outist extracts the content so you can start creating proposals quickly.",
+    title: "Go live in 10 minutes",
+    copy: "Upload your old proposals once. Sherpa learns your style, content, packages & more - so your team can get started immediately.",
     icon: Clock3,
     imageSrc: "/assets/10-minute-setup.png",
     imageAlt: "Upload existing proposals into The Outist",
@@ -27,17 +27,8 @@ const FEATURES: FeatureSlide[] = [
     cardPosition: "lg:right-[-112px] lg:top-[30%]",
   },
   {
-    title: "Brainstorm Ideas",
-    copy: "Ask The Outist to shape trip ideas, calculate per-person cost, refine packages, or improve proposal content before you share it.",
-    icon: Brain,
-    imageSrc: "/assets/brainstorm.png",
-    imageAlt: "Brainstorm trip ideas and calculate proposal pricing",
-    accent: "text-[#18b9e5]",
-    cardPosition: "lg:left-[-112px] lg:top-[33%]",
-  },
-  {
-    title: "Effortless Pictures",
-    copy: "Find stunning trip visuals in seconds. The Outist suggests multiple image options, so you can choose the best one for every destination or day.",
+    title: "Stunning visuals without the search",
+    copy: "Find destination-perfect images instantly — or let Sherpa suggest the best ones automatically.",
     icon: Image,
     imageSrc: "/assets/effortless-photo.png",
     imageAlt: "Generate and choose destination photos for proposals",
@@ -45,8 +36,8 @@ const FEATURES: FeatureSlide[] = [
     cardPosition: "lg:right-[-109px] lg:top-[17%]",
   },
   {
-    title: "Custom Branding",
-    copy: "Make every proposal feel like your brand. Adjust logo, colors, typography, links, and proposal style without redesigning from scratch.",
+    title: "Every proposal looks like your brand",
+    copy: "Your domain, logo, fonts, colors, and customer experience - with ultra consistency, every single time!",
     icon: Palette,
     imageSrc: "/assets/branding.png",
     imageAlt: "Customize proposal branding, font, and colors",
@@ -54,17 +45,17 @@ const FEATURES: FeatureSlide[] = [
     cardPosition: "lg:left-[-117px] lg:top-[43%]",
   },
   {
-    title: "Close Loops Faster",
-    copy: "Turn leads from WhatsApp, email, Instagram, or website forms into ready-to-share proposals without jumping between multiple tools.",
-    icon: MessageSquare,
-    imageSrc: "/assets/close-loop-faster.png",
-    imageAlt: "Share proposal links through WhatsApp, Instagram, and email",
-    accent: "text-[#ff9f43]",
+    title: "Plan smarter. Price better.",
+    copy: "Refine itineraries, calculate margins, optimize costs, and improve proposals before they reach your customer.",
+    icon: Brain,
+    imageSrc: "/assets/brainstorm.png",
+    imageAlt: "Brainstorm trip ideas and calculate proposal pricing",
+    accent: "text-[#18b9e5]",
     cardPosition: "lg:right-[-112px] lg:top-[35%]",
   },
   {
-    title: "Global Client Ready",
-    copy: "Create proposals in your client’s language and currency with real-time conversion support, so international enquiries feel local and clear.",
+    title: "Sell globally, personalize locally",
+    copy: "Multi-language + live currency conversion helps you close international customers faster.",
     icon: Globe2,
     imageSrc: "/assets/global-client-ready.png",
     imageAlt: "Convert proposal pricing across currencies",
@@ -72,8 +63,8 @@ const FEATURES: FeatureSlide[] = [
     cardPosition: "lg:left-[-112px] lg:top-[20%]",
   },
   {
-    title: "Works Everywhere",
-    copy: "Create, review, and share proposals across mobile, tablet, and laptop. Send them as a live URL or export them as a polished PDF.",
+    title: "Create once. Share anywhere.",
+    copy: "Live links and PDFs across desktop, mobile and tablet - share however your customers prefer.",
     icon: Laptop,
     imageSrc: "/assets/works-anywhere.png",
     imageAlt: "Review proposals across desktop, mobile, and tablet",
@@ -133,11 +124,11 @@ export function PowerfulFeaturesSection() {
       id="features"
       ref={sectionRef}
       data-scroll-reveal
-      className="scroll-reveal relative z-10 h-[680vh] bg-[#344700] px-5 py-20"
+      className="scroll-reveal relative z-10 h-[580vh] bg-[#344700] px-5 py-20"
     >
       <div className="sticky top-0 flex min-h-screen w-full flex-col items-center justify-start overflow-hidden pt-16 sm:pt-20 lg:pt-[72px]">
         <h2 className="w-full max-w-[1270px] text-center text-[34px] font-medium leading-[1.2] text-white sm:text-[46px] sm:leading-[1.5]">
-          Powerful Features
+          Everything your team needs to close bookings faster!
         </h2>
 
         <div className="relative mt-10 h-[600px] w-full max-w-[1180px] sm:mt-12 sm:h-[670px] lg:mt-8 lg:h-[710px]">

@@ -1,4 +1,4 @@
-const audiences = ["ATOs", "Travel Agents", "DMCs", "Tour Guides"];
+const audiences = ["Tour Operators", "Travel Agents", "DMCs", "Tour Guides", "Influencers"];
 
 export function AudienceSection() {
   return (
@@ -28,7 +28,7 @@ export function AudienceSection() {
           style={{ transitionDelay: "520ms" }}
           className="scroll-reveal-child max-w-[920px] text-[18px] font-normal leading-[1.35] text-black sm:text-[20px] sm:leading-[1.08]"
         >
-          The Outist is built for anyone who creates proposals for their clients.
+          Outist gives you <strong className="font-semibold">an unfair advantage</strong>
         </p>
       </div>
     </section>

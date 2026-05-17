@@ -51,7 +51,7 @@ const FEATURES: FeatureSlide[] = [
     imageSrc: "/assets/brainstorm.png",
     imageAlt: "Brainstorm trip ideas and calculate proposal pricing",
     accent: "text-[#18b9e5]",
-    cardPosition: "lg:right-[-240px] lg:top-[35%]",
+    cardPosition: "lg:left-[-112px] lg:top-[35%]",
   },
   {
     title: "Sell globally, personalize locally",
@@ -169,16 +169,17 @@ function FeatureSlideView({
       <div className="relative flex w-full max-w-[924px] flex-col items-center">
         <div
           className={cn(
-            "relative flex h-[300px] w-full items-center justify-center overflow-hidden rounded-[20px] border border-[#cfd5de] bg-[#f0f3f7] transition-all duration-700 ease-sherpa sm:h-[460px] lg:h-[638px]",
+            "relative flex w-full items-center justify-center overflow-hidden rounded-[20px] border border-[#cfd5de] bg-[#f0f3f7] transition-all duration-700 ease-sherpa sm:h-[460px] lg:h-[638px]",
             active ? "translate-y-0 scale-100 opacity-100 blur-0" : "translate-y-8 scale-[0.985] opacity-0 blur-sm",
           )}
         >
           <NextImage
             src={slide.imageSrc}
             alt={slide.imageAlt}
-            fill
+            width={924}
+            height={638}
             sizes="(min-width: 1024px) 924px, calc(100vw - 40px)"
-            className="object-cover"
+            className="h-auto w-full object-contain sm:h-full sm:object-cover"
             priority={slideNumber === 1}
           />
         </div>

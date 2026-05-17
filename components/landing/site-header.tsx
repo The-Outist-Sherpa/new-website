@@ -14,13 +14,11 @@ import {
 } from "@/components/ui/sheet";
 import { OutistButton } from "./outist-button";
 
-export function SiteHeader() {
-  const openDemoModal = () => {
-    window.dispatchEvent(new CustomEvent("open-demo-modal"));
-  };
+const GOOGLE_FORM_URL = "https://forms.gle/tfSK7WaLfgPHapza7";
 
+export function SiteHeader() {
   return (
-    <header className="absolute inset-x-0 top-0 z-20">
+    <header className="fixed inset-x-0 top-0 z-50">
       <div className="mx-auto w-full max-w-[1248px] px-5 pt-6 md:px-6 md:pt-8">
         <nav className="mx-auto flex min-h-[64px] w-full items-center justify-between gap-4 rounded-sherpa-pill bg-white px-5 py-1 shadow-sherpa-nav sm:min-h-[72px] sm:px-7 lg:max-w-[1200px] lg:pl-10 lg:pr-5">
           <a
@@ -52,18 +50,22 @@ export function SiteHeader() {
 
           <div className={cn("hidden shrink-0 items-center gap-3 lg:flex")}>
             <OutistButton asChild className="hidden sm:inline-flex">
-              <a href="#try">Try for Free</a>
+              <a href={GOOGLE_FORM_URL} target="_blank" rel="noreferrer">
+                Start for Free
+              </a>
             </OutistButton>
             <OutistButton asChild variant="secondary" className="px-5 sm:px-6">
-              <button type="button" onClick={openDemoModal}>
+              <a href={GOOGLE_FORM_URL} target="_blank" rel="noreferrer">
                 Book Demo
-              </button>
+              </a>
             </OutistButton>
           </div>
 
           <div className="ml-auto flex items-center gap-3 lg:hidden">
             <OutistButton asChild className="min-h-11 px-5 text-[15px]">
-              <a href="#try">Try</a>
+              <a href={GOOGLE_FORM_URL} target="_blank" rel="noreferrer">
+                Start Free
+              </a>
             </OutistButton>
           </div>
 
@@ -102,9 +104,9 @@ export function SiteHeader() {
               <div className="mt-auto flex flex-col gap-4 border-t border-sherpa-ink/10 p-6">
                 <SheetClose asChild>
                   <OutistButton asChild variant="secondary" className="w-full">
-                    <button type="button" onClick={openDemoModal}>
+                    <a href={GOOGLE_FORM_URL} target="_blank" rel="noreferrer">
                       Book Demo
-                    </button>
+                    </a>
                   </OutistButton>
                 </SheetClose>
               </div>

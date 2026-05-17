@@ -1,6 +1,8 @@
 import { Clock3, CreditCard, Zap } from "lucide-react";
 import { OutistButton } from "./outist-button";
 
+const GOOGLE_FORM_URL = "https://forms.gle/tfSK7WaLfgPHapza7";
+
 export function HeroSection() {
   return (
     <div className="relative z-10 mx-auto flex w-full max-w-[1432px] flex-col items-center px-5 pt-[218px] text-center sm:px-8 sm:pt-[252px] lg:pt-[290px]">
@@ -33,7 +35,9 @@ export function HeroSection() {
 
       <div className="mt-10 flex w-full justify-center sm:mt-12">
         <OutistButton asChild size="hero" className="max-w-[460px] px-6 sm:px-8">
-          <a href="#try">Start Free - Build Your First Proposal</a>
+          <a href={GOOGLE_FORM_URL} target="_blank" rel="noreferrer">
+            Start Free - Build Your First Proposal
+          </a>
         </OutistButton>
       </div>
 

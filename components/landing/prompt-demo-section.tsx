@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
 const PROMPT_TEXT =
-  "Modify the ‘Majestic Zanskar’ itinerary from our catalogue for Ms. Noa Levi. Group size 8. Include an acclimatization hike to Patalsu on Day 2. Meals on MAP on Day 1 and 8, remaining days AP. Cost per person is INR 1,58,000 (incl 5% GST).";
+  "Create a proposal for Manali Trip with 5 Adults for 7Days with 4-Star Hotel Accommodation, Premium Transport options, All Food Included. Start point is Chennai, Exclude Flight cost.";
 
 const TYPE_INTERVAL_MS = 30;
 const GENERATING_DURATION_MS = 4200;
@@ -97,17 +97,23 @@ export function PromptDemoSection() {
       id="try"
       ref={sectionRef}
       data-scroll-reveal
-      className="scroll-reveal relative z-10 flex min-h-[760px] flex-col items-center bg-white/82 px-5 py-16 text-center sm:min-h-[820px] sm:py-20 lg:min-h-[900px] lg:py-7"
+      className="scroll-reveal relative z-10 flex min-h-[760px] flex-col items-center bg-white/82 px-5 py-16 text-center sm:min-h-[820px] sm:py-20 lg:min-h-[980px] lg:py-20"
     >
-      <h2 className="w-full max-w-[1180px] text-balance text-[36px] font-medium leading-[1.12] text-sherpa-ink sm:text-[46px] sm:leading-[1.25] lg:leading-[1.5]">
-        Easy Prompt to Top Quality Proposal
-      </h2>
+      <div className="flex w-full max-w-[760px] flex-col items-center justify-center gap-4">
+        <OutistOrb active={isOrbActive} />
+        <h2 className="text-balance text-[34px] font-medium leading-[1.12] text-sherpa-ink sm:text-[46px] sm:leading-[1.25]">
+          You describe. Sherpa builds.
+        </h2>
+        <p className="max-w-[747px] text-balance text-[18px] font-normal leading-[1.7] text-sherpa-ink sm:text-[24px]">
+          Your personal assistant for hyper-personalised, branded proposals - on demand, instantly, anywhere! Just talk or type!
+        </p>
+      </div>
 
-      <div className="mt-12 flex w-full max-w-[1270px] flex-col items-center gap-10 sm:mt-[85px] lg:flex-row lg:items-center lg:gap-[39px]">
+      <div className="mt-16 flex w-full max-w-[1270px] flex-col items-center gap-8 sm:mt-24 sm:gap-10 lg:mt-[134px] lg:flex-row lg:items-start lg:gap-[39px]">
         <div
           className={cn(
-            "flex w-full max-w-[387px] flex-col items-center py-8 transition-all duration-700 ease-sherpa sm:py-10 lg:order-none lg:items-start",
-            isComplete ? "order-2" : "order-1",
+            "order-1 flex w-full max-w-[387px] flex-col items-center py-2 transition-all duration-700 ease-sherpa sm:py-10 lg:order-none lg:items-start lg:py-20",
+            isComplete && "lg:opacity-100",
           )}
         >
           <div className="w-full px-4 py-3 text-left">
@@ -131,7 +137,7 @@ export function PromptDemoSection() {
                 </div>
 
                 <p
-                  className="min-h-[178px] w-full whitespace-pre-wrap text-[18px] font-normal leading-[1.85] text-sherpa-ink"
+                  className="min-h-[150px] w-full whitespace-pre-wrap text-[18px] font-normal leading-[1.85] text-sherpa-ink sm:min-h-[178px]"
                   aria-live="polite"
                 >
                   {typedPrompt}
@@ -149,8 +155,8 @@ export function PromptDemoSection() {
 
         <div
           className={cn(
-            "relative flex min-h-[500px] w-full max-w-[844px] items-center justify-center overflow-hidden transition-all duration-700 ease-sherpa sm:min-h-[610px] lg:order-none lg:h-[735px] lg:min-h-0",
-            isComplete ? "order-1" : "order-2",
+            "relative order-2 flex w-full max-w-[844px] items-center justify-center overflow-hidden transition-all duration-700 ease-sherpa lg:order-none lg:min-h-0",
+            isComplete ? "min-h-[790px] sm:min-h-[610px] lg:h-[638px]" : "min-h-[460px] sm:min-h-[520px] lg:h-[638px]",
           )}
         >
           <div
@@ -161,8 +167,7 @@ export function PromptDemoSection() {
                 : "translate-y-0 scale-100 opacity-100 blur-0",
             )}
           >
-            <div className="flex w-full max-w-[450px] flex-col items-center gap-6">
-              <OutistOrb active={isOrbActive} />
+            <div className="flex h-[460px] w-full items-center justify-center rounded-[28px] border border-[#cfd5de] bg-[#f0f3f7] px-3 py-3 sm:h-[520px] sm:rounded-[20px] lg:h-[638px]">
               <StatusText phase={phase} />
             </div>
           </div>
@@ -188,7 +193,7 @@ function StatusText({ phase }: { phase: DemoPhase }) {
   const label = phase === "generating" ? "Generating Proposal" : "Listening";
 
   return (
-    <p className="whitespace-nowrap text-base font-normal leading-[1.45] text-sherpa-muted">
+    <p className="whitespace-nowrap text-[16px] font-medium leading-[1.25] text-black">
       {label}
       <span className={cn("listening-dots", isAnimating && "is-active")} aria-hidden="true">
         <span>.</span>
@@ -202,8 +207,8 @@ function StatusText({ phase }: { phase: DemoPhase }) {
 function GeneratedProposalFrame() {
   return (
     <div className="flex w-full flex-col items-start gap-[25px]">
-      <div className="flex h-[460px] w-full items-center justify-center rounded-[20px] border border-[#cfd5de] bg-[#f0f3f7] px-3 py-3 sm:h-[520px] sm:px-4 lg:h-[638px]">
-        <div className="relative h-full w-full overflow-hidden rounded-[16px] bg-white shadow-[0_1px_0_rgba(32,44,61,0.05)] transition-all duration-500 ease-sherpa">
+      <div className="flex h-[760px] w-full items-center justify-center rounded-[28px] border border-[#cfd5de] bg-[#f0f3f7] px-2 py-4 sm:h-[520px] sm:rounded-[20px] sm:px-4 sm:py-3 lg:h-[638px]">
+        <div className="relative h-full w-full max-w-[390px] overflow-hidden rounded-[36px] border-[8px] border-black bg-white shadow-[0_20px_70px_rgba(32,44,61,0.18)] transition-all duration-500 ease-sherpa sm:max-w-none sm:rounded-[16px] sm:border-0 sm:shadow-[0_1px_0_rgba(32,44,61,0.05)]">
           <iframe
             title="Generated proposal link preview"
             src={LINK_PREVIEW_URL}

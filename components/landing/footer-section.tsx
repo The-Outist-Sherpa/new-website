@@ -87,8 +87,10 @@ export function FooterSection() {
 
           <div className="flex flex-col items-center justify-center gap-4 text-[14px] font-normal leading-[1.45] text-white sm:flex-row sm:gap-8">
             <a
-              href="#"
+              href="https://outist.app/terms"
               className="transition-colors hover:text-white/75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/35"
+              target="_blank"
+              rel="noreferrer"
             >
               Terms and Conditions
             </a>

@@ -6,7 +6,7 @@ import { FormEvent, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { cn } from "@/lib/utils";
 
-const SIGNUP_URL = "about:blank";
+const SIGNUP_URL = "https://forms.gle/tfSK7WaLfgPHapza7";
 
 type DemoFormState = {
   captchaAnswer: string;
@@ -335,18 +335,18 @@ export function TrialSection() {
           />
 
           <div className="relative z-10 flex w-full flex-col items-start gap-10">
-            <div className="flex w-full items-start justify-between gap-4 lg:items-center lg:gap-10">
-              <div className="relative h-[148px] w-[198px] max-w-[54%] shrink-0 sm:max-w-none">
+            <div className="flex w-full items-start justify-center gap-4 sm:justify-between lg:items-center lg:gap-10">
+              <div className="relative h-[148px] w-[198px] shrink-0 sm:max-w-none">
                 <Image
                   src="/assets/giftbox.png"
                   alt=""
                   fill
                   sizes="198px"
-                  className="object-contain object-left"
+                  className="object-contain sm:object-left"
                 />
               </div>
 
-              <div className="flex flex-col items-end gap-2 lg:h-[148px] lg:flex-1 lg:justify-center">
+              <div className="hidden flex-col items-end gap-2 sm:flex lg:h-[148px] lg:flex-1 lg:justify-center">
                 <img
                   src="/assets/trial-slots-tag.svg"
                   alt="100 Slots Available"
@@ -365,13 +365,21 @@ export function TrialSection() {
                 </h2>
                 <div className="max-w-[1080px] text-[20px] font-normal leading-[2] sm:text-[24px] lg:text-[28px]">
                   <p>Founding team-led onboarding, direct support, and early mover advantage.</p>
-                  <p className="sm:hidden">100 slots available on a first-come first-serve basis.</p>
                 </div>
               </div>
 
-              <TrialButton className="max-w-[240px] text-[16px] sm:text-[18px]" onClick={openSignup}>
+              <TrialButton className="h-20 max-w-none text-[18px] sm:h-[72px] sm:max-w-[240px] sm:text-[18px]" onClick={openSignup}>
                 Claim Free Trial
               </TrialButton>
+
+              <div className="flex w-full flex-col items-center sm:hidden">
+                <div className="rounded-[8px] bg-black px-3 py-3 text-[20px] font-normal leading-[1.2] text-white">
+                  100 Slots Available
+                </div>
+                <p className="mt-1 w-full max-w-[361px] text-center text-[18px] font-normal leading-[2] text-black">
+                  on a first-come first-serve basis.
+                </p>
+              </div>
             </div>
           </div>
         </div>

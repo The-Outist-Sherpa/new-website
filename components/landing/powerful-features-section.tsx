@@ -1,5 +1,6 @@
 "use client";
 
+import NextImage from "next/image";
 import { Brain, Clock3, Globe2, Image, Laptop, MessageSquare, Palette } from "lucide-react";
 import type { ComponentType } from "react";
 import { useEffect, useRef, useState } from "react";
@@ -10,6 +11,8 @@ type FeatureSlide = {
   cardPosition: string;
   copy: string;
   icon: ComponentType<{ className?: string; strokeWidth?: number; "aria-hidden"?: boolean }>;
+  imageAlt: string;
+  imageSrc: string;
   title: string;
 };
 
@@ -18,6 +21,8 @@ const FEATURES: FeatureSlide[] = [
     title: "10-Minute Setup",
     copy: "Upload your existing proposals in any format. The Outist extracts the content so you can start creating proposals quickly.",
     icon: Clock3,
+    imageSrc: "/assets/10-minute-setup.png",
+    imageAlt: "Upload existing proposals into The Outist",
     accent: "text-[#ff5f5f]",
     cardPosition: "lg:right-[-112px] lg:top-[30%]",
   },
@@ -25,6 +30,8 @@ const FEATURES: FeatureSlide[] = [
     title: "Brainstorm Ideas",
     copy: "Ask The Outist to shape trip ideas, calculate per-person cost, refine packages, or improve proposal content before you share it.",
     icon: Brain,
+    imageSrc: "/assets/brainstorm.png",
+    imageAlt: "Brainstorm trip ideas and calculate proposal pricing",
     accent: "text-[#18b9e5]",
     cardPosition: "lg:left-[-112px] lg:top-[33%]",
   },
@@ -32,6 +39,8 @@ const FEATURES: FeatureSlide[] = [
     title: "Effortless Pictures",
     copy: "Find stunning trip visuals in seconds. The Outist suggests multiple image options, so you can choose the best one for every destination or day.",
     icon: Image,
+    imageSrc: "/assets/effortless-photo.png",
+    imageAlt: "Generate and choose destination photos for proposals",
     accent: "text-[#c6e943]",
     cardPosition: "lg:right-[-109px] lg:top-[17%]",
   },
@@ -39,6 +48,8 @@ const FEATURES: FeatureSlide[] = [
     title: "Custom Branding",
     copy: "Make every proposal feel like your brand. Adjust logo, colors, typography, links, and proposal style without redesigning from scratch.",
     icon: Palette,
+    imageSrc: "/assets/branding.png",
+    imageAlt: "Customize proposal branding, font, and colors",
     accent: "text-[#337dff]",
     cardPosition: "lg:left-[-117px] lg:top-[43%]",
   },
@@ -46,6 +57,8 @@ const FEATURES: FeatureSlide[] = [
     title: "Close Loops Faster",
     copy: "Turn leads from WhatsApp, email, Instagram, or website forms into ready-to-share proposals without jumping between multiple tools.",
     icon: MessageSquare,
+    imageSrc: "/assets/close-loop-faster.png",
+    imageAlt: "Share proposal links through WhatsApp, Instagram, and email",
     accent: "text-[#ff9f43]",
     cardPosition: "lg:right-[-112px] lg:top-[35%]",
   },
@@ -53,6 +66,8 @@ const FEATURES: FeatureSlide[] = [
     title: "Global Client Ready",
     copy: "Create proposals in your client’s language and currency with real-time conversion support, so international enquiries feel local and clear.",
     icon: Globe2,
+    imageSrc: "/assets/global-client-ready.png",
+    imageAlt: "Convert proposal pricing across currencies",
     accent: "text-[#13c2a3]",
     cardPosition: "lg:left-[-112px] lg:top-[20%]",
   },
@@ -60,6 +75,8 @@ const FEATURES: FeatureSlide[] = [
     title: "Works Everywhere",
     copy: "Create, review, and share proposals across mobile, tablet, and laptop. Send them as a live URL or export them as a polished PDF.",
     icon: Laptop,
+    imageSrc: "/assets/works-anywhere.png",
+    imageAlt: "Review proposals across desktop, mobile, and tablet",
     accent: "text-[#8f5bff]",
     cardPosition: "lg:right-[-109px] lg:top-[43%]",
   },
@@ -116,10 +133,10 @@ export function PowerfulFeaturesSection() {
       id="features"
       ref={sectionRef}
       data-scroll-reveal
-      className="scroll-reveal relative z-10 h-[680vh] bg-white/82 px-5 py-16 sm:py-20"
+      className="scroll-reveal relative z-10 h-[680vh] bg-[#344700] px-5 py-20"
     >
       <div className="sticky top-0 flex min-h-screen w-full flex-col items-center justify-start overflow-hidden pt-16 sm:pt-20 lg:pt-[72px]">
-        <h2 className="w-full max-w-[1270px] text-center text-[34px] font-medium leading-[1.2] text-sherpa-ink sm:text-[46px] sm:leading-[1.5]">
+        <h2 className="w-full max-w-[1270px] text-center text-[34px] font-medium leading-[1.2] text-white sm:text-[46px] sm:leading-[1.5]">
           Powerful Features
         </h2>
 
@@ -161,15 +178,18 @@ function FeatureSlideView({
       <div className="relative w-full max-w-[924px]">
         <div
           className={cn(
-            "flex h-[390px] w-full items-center justify-center rounded-[20px] border border-[#cfd5de] bg-[#f0f3f7] px-4 py-3 transition-all duration-700 ease-sherpa sm:h-[520px] lg:h-[638px]",
+            "relative flex h-[390px] w-full items-center justify-center overflow-hidden rounded-[20px] border border-[#cfd5de] bg-[#f0f3f7] transition-all duration-700 ease-sherpa sm:h-[520px] lg:h-[638px]",
             active ? "translate-y-0 scale-100 opacity-100 blur-0" : "translate-y-8 scale-[0.985] opacity-0 blur-sm",
           )}
         >
-          <div className="flex h-full w-full items-center justify-center rounded-[16px] border border-dashed border-[#c8d0db] bg-white/35">
-            <p className="text-center text-base font-medium leading-[1.25] text-black">
-              Image or Videos
-            </p>
-          </div>
+          <NextImage
+            src={slide.imageSrc}
+            alt={slide.imageAlt}
+            fill
+            sizes="(min-width: 1024px) 924px, calc(100vw - 40px)"
+            className="object-cover"
+            priority={slideNumber === 1}
+          />
         </div>
 
         <div
@@ -208,7 +228,7 @@ function FeatureProgressIndicator({
 }) {
   return (
     <div
-      className="absolute bottom-0 left-1/2 z-10 flex -translate-x-1/2 items-center gap-2 rounded-sherpa-pill border border-[#dfe3e8] bg-white/75 px-3 py-2 shadow-[0_6px_18px_rgba(32,44,61,0.08)] backdrop-blur-sm lg:bottom-auto lg:left-auto lg:right-[-68px] lg:top-[318px] lg:translate-x-0 lg:flex-col lg:px-2 lg:py-3"
+      className="absolute bottom-0 left-1/2 z-10 flex -translate-x-1/2 items-center gap-2 rounded-sherpa-pill border border-white/25 bg-white/18 px-3 py-2 shadow-[0_6px_18px_rgba(0,0,0,0.16)] backdrop-blur-sm lg:bottom-auto lg:left-auto lg:right-[-68px] lg:top-[318px] lg:translate-x-0 lg:flex-col lg:px-2 lg:py-3"
       aria-label={`Feature slide ${activeSlide + 1} of ${totalSlides}`}
     >
       {Array.from({ length: totalSlides }).map((_, index) => {
@@ -218,9 +238,9 @@ function FeatureProgressIndicator({
           <span
             key={index}
             className={cn(
-              "block rounded-sherpa-pill bg-sherpa-ink/20 transition-all duration-500 ease-sherpa",
+              "block rounded-sherpa-pill bg-white/35 transition-all duration-500 ease-sherpa",
               isActive
-                ? "h-2 w-8 bg-sherpa-ink lg:h-8 lg:w-2"
+                ? "h-2 w-8 bg-white lg:h-8 lg:w-2"
                 : "h-2 w-2 lg:h-2 lg:w-2",
             )}
             aria-hidden="true"

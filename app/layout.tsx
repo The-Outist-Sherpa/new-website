@@ -15,7 +15,7 @@ const outfit = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://sherpa-landing-pi.vercel.app"),
+  metadataBase: new URL("https://outist.app"),
   title: "The Outist — AI Travel Proposal Builder for Travel Teams",
   description:
     "Create beautiful client-ready travel proposals in minutes. The Outist helps travel agents, tour operators, DMCs, and experience hosts generate itineraries, images, maps, pricing, and shareable proposals faster.",

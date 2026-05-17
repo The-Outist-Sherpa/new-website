@@ -11,7 +11,7 @@ type DemoRequestPayload = {
 };
 
 const demoRequestTo = parseEmailList(
-  process.env.DEMO_REQUEST_TO ?? "hello@theoutist.com,integrations@theoutist.com",
+  process.env.DEMO_REQUEST_TO ?? "integrations@theoutist.com",
 );
 const demoRequestFrom = process.env.DEMO_REQUEST_FROM ?? "The Outist <hello@theoutist.com>";
 const textOnlyPattern = /^[A-Za-z\s.'’&()-]+$/;

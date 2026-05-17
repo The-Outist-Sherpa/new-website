@@ -1,8 +1,17 @@
 "use client";
 
 import Image from "next/image";
+import { Menu } from "lucide-react";
 import { navItems } from "@/lib/content";
 import { cn } from "@/lib/utils";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import { OutistButton } from "./outist-button";
 
 export function SiteHeader() {
@@ -41,7 +50,7 @@ export function SiteHeader() {
             ))}
           </div>
 
-          <div className={cn("flex shrink-0 items-center gap-3 sm:gap-5")}>
+          <div className={cn("hidden shrink-0 items-center gap-3 lg:flex")}>
             <OutistButton asChild className="hidden sm:inline-flex">
               <a href="#try">Try for Free</a>
             </OutistButton>
@@ -51,6 +60,54 @@ export function SiteHeader() {
               </button>
             </OutistButton>
           </div>
+
+          <Sheet>
+            <SheetTrigger asChild>
+              <button
+                type="button"
+                aria-label="Open navigation menu"
+                className="inline-flex size-12 items-center justify-center rounded-full border border-sherpa-ink bg-white text-sherpa-ink shadow-[1px_3px_0_#202c3d] transition-transform active:translate-y-[2px] active:shadow-none lg:hidden"
+              >
+                <Menu aria-hidden className="size-6" strokeWidth={2.25} />
+              </button>
+            </SheetTrigger>
+            <SheetContent
+              side="right"
+              className="border-sherpa-ink/10 bg-white p-0 text-sherpa-ink"
+            >
+              <SheetHeader className="border-sherpa-ink/10 bg-white p-6">
+                <SheetTitle className="text-[20px] font-medium text-sherpa-ink">
+                  Menu
+                </SheetTitle>
+              </SheetHeader>
+              <div className="flex flex-col gap-2 px-6 py-5">
+                {navItems.map((item) => (
+                  <SheetClose asChild key={item.label}>
+                    <a
+                      href={item.href}
+                      className="rounded-[16px] px-4 py-4 text-[20px] font-medium leading-[1.25] text-sherpa-ink transition-colors hover:bg-sherpa-lime/20"
+                    >
+                      {item.label}
+                    </a>
+                  </SheetClose>
+                ))}
+              </div>
+              <div className="mt-auto flex flex-col gap-4 border-t border-sherpa-ink/10 p-6">
+                <SheetClose asChild>
+                  <OutistButton asChild className="w-full">
+                    <a href="#try">Try for Free</a>
+                  </OutistButton>
+                </SheetClose>
+                <SheetClose asChild>
+                  <OutistButton asChild variant="secondary" className="w-full">
+                    <button type="button" onClick={openDemoModal}>
+                      Book Demo
+                    </button>
+                  </OutistButton>
+                </SheetClose>
+              </div>
+            </SheetContent>
+          </Sheet>
         </nav>
       </div>
     </header>

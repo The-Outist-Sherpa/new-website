@@ -31,15 +31,15 @@ export function FooterSection() {
       className="scroll-reveal relative z-10 bg-[#0f1824] px-5 py-16 text-white sm:py-20 lg:px-20"
     >
       <div className="mx-auto flex w-full max-w-[1280px] flex-col items-center gap-16 lg:gap-20">
-        <div className="flex w-full flex-col items-center justify-center gap-10 sm:gap-12">
+        <div className="flex w-full flex-col items-center justify-center gap-8 sm:gap-10">
           <h2 className="text-center text-[34px] font-medium leading-[1.08] sm:text-[42px] lg:text-[48px]">
-            Here to help you grow - before and after you sign up!
+            Contact us
           </h2>
-          <p className="max-w-[880px] text-center text-[18px] font-normal leading-[1.45] text-white/72 sm:text-[20px]">
+          <p className="max-w-[880px] text-center text-[16px] font-normal leading-[1.45] text-white sm:text-[20px] sm:leading-[1.08]">
             Reach out for live demo, queries, onboarding support, feedback, or custom business requirements
           </p>
 
-          <div className="flex w-full flex-col items-center justify-center gap-5 md:flex-row md:flex-wrap lg:gap-10">
+          <div className="mt-2 flex w-full flex-col items-center justify-center gap-5 md:flex-row md:flex-wrap lg:mt-4 lg:gap-10">
             {contactActions.map((action) => {
               const Icon = action.icon;
 
@@ -66,18 +66,22 @@ export function FooterSection() {
           </div>
         </div>
 
-        <div className="flex w-full flex-col items-center justify-center gap-6">
-          <p className="text-center text-[20px] font-normal leading-[1.25] sm:text-[24px] sm:leading-[1.08]">
-            The Outist is proudly affiliated with and recognised by
-          </p>
-          <div className="relative h-[104px] w-[124px] overflow-hidden rounded-[16px]">
-            <Image
-              src="/assets/footer-affiliation.png"
-              alt="Adventure Tour Operators Association of India Allied"
-              fill
-              sizes="124px"
-              className="object-cover"
+        <div className="flex w-full max-w-[1011px] flex-col items-center justify-center border-t border-white/20 pt-12 sm:pt-[60px]">
+          <div className="flex flex-col items-center justify-center gap-6 sm:flex-row">
+            <img
+              src="/assets/footer-outist-logo-white.svg"
+              alt="The Outist"
+              className="h-[46px] w-[210px] object-contain sm:h-[52px] sm:w-[239px]"
             />
+            <div className="relative h-[94px] w-[112px] overflow-hidden rounded-[16px] sm:h-[104px] sm:w-[124px]">
+              <Image
+                src="/assets/footer-affiliation.png"
+                alt="Adventure Tour Operators Association of India Allied"
+                fill
+                sizes="124px"
+                className="object-cover"
+              />
+            </div>
           </div>
         </div>
 
@@ -85,7 +89,7 @@ export function FooterSection() {
           <img
             src="/assets/footer-outist-wordmark.svg"
             alt="The Outist"
-            className="h-auto w-full max-w-[913px]"
+            className="h-[90px] w-full max-w-[913px] object-contain sm:h-[150px] lg:h-[200px]"
           />
           <p className="text-center text-[14px] font-normal leading-[1.45]">
             © 2026, Outist Experiences Pvt. Ltd.

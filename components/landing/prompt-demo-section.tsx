@@ -11,7 +11,7 @@ const PROMPT_TEXT =
 
 const TYPE_INTERVAL_MS = 42;
 const GENERATING_DURATION_MS = 4200;
-const LINK_PREVIEW_URL = "https://outist.app/share/096f5577dcd346bf84ebb15e79648f37?v=1778313495";
+const LINK_PREVIEW_URL = "https://tours.outist.app/s/qaWXDawni?v=04Us-";
 const PDF_PREVIEW_URL = "";
 
 type DemoPhase = "idle" | "recording" | "generating" | "complete";
@@ -106,8 +106,13 @@ export function PromptDemoSection() {
         Easy Prompt to Top Quality Proposal
       </h2>
 
-      <div className="mt-20 flex w-full max-w-[1270px] flex-col items-center gap-10 sm:mt-[85px] lg:flex-row lg:items-center lg:gap-[39px]">
-        <div className="flex w-full max-w-[387px] flex-col items-center py-8 sm:py-10 lg:items-start">
+      <div className="mt-12 flex w-full max-w-[1270px] flex-col items-center gap-10 sm:mt-[85px] lg:flex-row lg:items-center lg:gap-[39px]">
+        <div
+          className={cn(
+            "flex w-full max-w-[387px] flex-col items-center py-8 transition-all duration-700 ease-sherpa sm:py-10 lg:order-none lg:items-start",
+            isComplete ? "order-2" : "order-1",
+          )}
+        >
           <div className="w-full px-4 py-3 text-left">
             <div className="flex w-full flex-col items-start gap-3">
               <span className={cn("mic-recording-indicator", isRecording && "is-recording")}>
@@ -145,7 +150,12 @@ export function PromptDemoSection() {
           </div>
         </div>
 
-        <div className="relative flex min-h-[610px] w-full max-w-[844px] items-center justify-center overflow-hidden lg:h-[735px] lg:min-h-0">
+        <div
+          className={cn(
+            "relative flex min-h-[500px] w-full max-w-[844px] items-center justify-center overflow-hidden transition-all duration-700 ease-sherpa sm:min-h-[610px] lg:order-none lg:h-[735px] lg:min-h-0",
+            isComplete ? "order-1" : "order-2",
+          )}
+        >
           <div
             className={cn(
               "absolute inset-0 flex items-center justify-center transition-all duration-700 ease-sherpa",
@@ -218,7 +228,7 @@ function GeneratedProposalFrame() {
         </div>
       </div>
 
-      <div className="flex h-[420px] w-full items-center justify-center rounded-[20px] border border-[#cfd5de] bg-[#f0f3f7] px-4 py-3 sm:h-[520px] lg:h-[638px]">
+      <div className="flex h-[460px] w-full items-center justify-center rounded-[20px] border border-[#cfd5de] bg-[#f0f3f7] px-3 py-3 sm:h-[520px] sm:px-4 lg:h-[638px]">
         <div className="relative h-full w-full overflow-hidden rounded-[16px] bg-white shadow-[0_1px_0_rgba(32,44,61,0.05)] transition-all duration-500 ease-sherpa">
           {previewUrl ? (
             <iframe

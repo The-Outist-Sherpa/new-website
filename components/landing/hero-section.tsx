@@ -1,4 +1,4 @@
-import { Zap } from "lucide-react";
+import { Clock3, CreditCard, Zap } from "lucide-react";
 import { OutistButton } from "./outist-button";
 
 export function HeroSection() {
@@ -33,6 +33,17 @@ export function HeroSection() {
         <OutistButton asChild size="hero" className="max-w-[460px] px-6 sm:px-8">
           <a href="#try">Start Free - Build Your First Proposal</a>
         </OutistButton>
+      </div>
+
+      <div className="mt-5 flex flex-col items-center justify-center gap-3 text-[14px] font-medium leading-[1.25] text-sherpa-ink/72 sm:flex-row sm:gap-6 sm:text-[15px]">
+        <span className="inline-flex items-center gap-2">
+          <CreditCard aria-hidden className="size-4" strokeWidth={2} />
+          No credit card required.
+        </span>
+        <span className="inline-flex items-center gap-2">
+          <Clock3 aria-hidden className="size-4" strokeWidth={2} />
+          Setup in 10 minutes.
+        </span>
       </div>
     </div>
   );

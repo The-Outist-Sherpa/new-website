@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Loader2, Send, X } from "lucide-react";
+import { Loader2, Send, ShieldCheck, X } from "lucide-react";
 import { FormEvent, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { cn } from "@/lib/utils";
@@ -9,6 +9,9 @@ import { cn } from "@/lib/utils";
 const SIGNUP_URL = "about:blank";
 
 type DemoFormState = {
+  captchaAnswer: string;
+  captchaLeft: string;
+  captchaRight: string;
   companyName: string;
   countryCode: string;
   fullName: string;
@@ -16,6 +19,9 @@ type DemoFormState = {
 };
 
 const initialFormState: DemoFormState = {
+  captchaAnswer: "",
+  captchaLeft: "4",
+  captchaRight: "3",
   companyName: "",
   countryCode: "+91",
   fullName: "",
@@ -30,12 +36,26 @@ export function TrialSection() {
   const [formState, setFormState] = useState<DemoFormState>(initialFormState);
   const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
 
+  const createCaptcha = () => {
+    const left = Math.floor(Math.random() * 7) + 2;
+    const right = Math.floor(Math.random() * 7) + 2;
+
+    return { left: String(left), right: String(right) };
+  };
+
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
   useEffect(() => {
     const openDemoModal = () => {
+      const captcha = createCaptcha();
+      setFormState((current) => ({
+        ...current,
+        captchaAnswer: "",
+        captchaLeft: captcha.left,
+        captchaRight: captcha.right,
+      }));
       setIsModalOpen(true);
     };
 
@@ -72,12 +92,24 @@ export function TrialSection() {
   }, [formStatus]);
 
   const updateField = (field: keyof DemoFormState, value: string) => {
-    setFormState((current) => ({ ...current, [field]: value }));
+    const nextValue =
+      field === "mobileNumber" || field === "captchaAnswer"
+        ? value.replace(/\D/g, "")
+        : field === "fullName" || field === "companyName"
+          ? value.replace(/[0-9]/g, "")
+          : value;
+
+    setFormState((current) => ({ ...current, [field]: nextValue }));
     setFormStatus("idle");
   };
 
   const resetForm = () => {
-    setFormState(initialFormState);
+    const captcha = createCaptcha();
+    setFormState({
+      ...initialFormState,
+      captchaLeft: captcha.left,
+      captchaRight: captcha.right,
+    });
     setFormStatus("idle");
   };
 
@@ -90,6 +122,11 @@ export function TrialSection() {
   const submitDemoRequest = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setFormStatus("submitting");
+
+    if (Number(formState.captchaAnswer) !== Number(formState.captchaLeft) + Number(formState.captchaRight)) {
+      setFormStatus("error");
+      return;
+    }
 
     try {
       const response = await fetch("/api/demo-request", {
@@ -179,6 +216,8 @@ export function TrialSection() {
                 required
                 value={formState.fullName}
                 onChange={(event) => updateField("fullName", event.target.value)}
+                pattern="[A-Za-z\s.'’&()\-]+"
+                title="Fullname cannot include numbers"
                 className="h-14 rounded-[18px] border border-[#d8dde4] bg-white px-4 text-base font-normal text-sherpa-ink outline-none transition-colors placeholder:text-sherpa-ink/35 focus:border-sherpa-ink/70"
                 placeholder="Enter your name"
               />
@@ -202,6 +241,8 @@ export function TrialSection() {
                 <input
                   required
                   inputMode="tel"
+                  pattern="[0-9]{6,15}"
+                  title="Mobile number should contain only digits"
                   value={formState.mobileNumber}
                   onChange={(event) => updateField("mobileNumber", event.target.value)}
                   className="h-14 bg-white px-4 text-base font-normal text-sherpa-ink outline-none placeholder:text-sherpa-ink/35"
@@ -216,14 +257,36 @@ export function TrialSection() {
                 required
                 value={formState.companyName}
                 onChange={(event) => updateField("companyName", event.target.value)}
+                pattern="[A-Za-z\s.'’&()\-]+"
+                title="Company name cannot include numbers"
                 className="h-14 rounded-[18px] border border-[#d8dde4] bg-white px-4 text-base font-normal text-sherpa-ink outline-none transition-colors placeholder:text-sherpa-ink/35 focus:border-sherpa-ink/70"
                 placeholder="Enter company name"
               />
             </label>
 
+            <label className="flex flex-col gap-2 text-sm font-medium text-sherpa-ink">
+              Human Verification
+              <div className="grid grid-cols-[auto_1fr] items-center gap-3">
+                <div className="inline-flex h-14 items-center gap-2 rounded-[18px] border border-[#d8dde4] bg-[#f7f9f2] px-4 text-base font-medium text-sherpa-ink">
+                  <ShieldCheck aria-hidden className="size-5 text-[#6f9300]" strokeWidth={2} />
+                  {formState.captchaLeft} + {formState.captchaRight} =
+                </div>
+                <input
+                  required
+                  inputMode="numeric"
+                  pattern="[0-9]+"
+                  value={formState.captchaAnswer}
+                  onChange={(event) => updateField("captchaAnswer", event.target.value)}
+                  className="h-14 min-w-0 rounded-[18px] border border-[#d8dde4] bg-white px-4 text-base font-normal text-sherpa-ink outline-none transition-colors placeholder:text-sherpa-ink/35 focus:border-sherpa-ink/70"
+                  placeholder="Answer"
+                  aria-label="Captcha answer"
+                />
+              </div>
+            </label>
+
             {formStatus === "error" && (
               <div className="rounded-[18px] border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium leading-[1.5] text-red-700">
-                We could not submit the request right now. Please try again.
+                Please check the form details and try again.
               </div>
             )}
 
@@ -259,9 +322,9 @@ export function TrialSection() {
       <section
         id="trial"
         data-scroll-reveal
-        className="scroll-reveal relative z-10 bg-white/82 px-5 pb-24 pt-14 sm:pb-28 sm:pt-16 lg:pb-36 lg:pt-20"
+        className="scroll-reveal relative z-10 bg-white/82 px-0 pb-24 pt-14 sm:px-5 sm:pb-28 sm:pt-16 lg:pb-36 lg:pt-20"
       >
-        <div className="relative mx-auto flex w-full max-w-[1280px] overflow-hidden rounded-[34px] bg-sherpa-lime px-6 py-9 sm:rounded-[48px] sm:px-10 sm:py-10 lg:min-h-[360px] lg:rounded-[56px] lg:px-16 lg:py-14">
+        <div className="relative mx-auto flex w-full max-w-[1210px] overflow-hidden bg-sherpa-lime px-8 py-12 sm:rounded-[48px] sm:px-10 sm:py-12 lg:min-h-[532px] lg:items-end lg:rounded-[64px] lg:px-20 lg:py-[72px]">
           <Image
             src="/assets/trial-section-pattern.png"
             alt=""
@@ -271,9 +334,9 @@ export function TrialSection() {
             priority={false}
           />
 
-          <div className="relative z-10 flex w-full flex-col gap-9 lg:grid lg:grid-cols-[minmax(0,1fr)_260px] lg:items-center lg:gap-10">
-            <div className="flex min-h-[230px] flex-col items-start justify-between gap-10 sm:min-h-[260px]">
-              <div className="relative h-[116px] w-[156px] shrink-0 sm:h-[148px] sm:w-[198px]">
+          <div className="relative z-10 flex w-full flex-col items-start gap-10">
+            <div className="flex w-full items-start justify-between gap-4">
+              <div className="relative h-[148px] w-[198px] max-w-[54%] shrink-0 sm:max-w-none">
                 <Image
                   src="/assets/giftbox.png"
                   alt=""
@@ -283,19 +346,29 @@ export function TrialSection() {
                 />
               </div>
 
-              <div className="flex max-w-[660px] flex-col gap-3">
-                <h2 className="text-[34px] font-medium leading-[1.08] text-black sm:text-[44px] lg:text-[50px]">
-                  Exclusive 30 Days free trial
-                </h2>
-                <p className="text-[20px] font-normal leading-[1.3] text-black sm:text-[25px] lg:text-[27px]">
-                  100 slots available on a first-come first-serve basis.
-                </p>
+              <div className="relative mt-0 flex h-[38px] min-w-[120px] items-center justify-center rounded-[6px] bg-black px-5 text-[16px] font-normal leading-[1.58] text-white sm:h-[64px] sm:min-w-[200px] sm:rounded-[14px] sm:px-7 sm:text-[22px] lg:h-[76px] lg:min-w-[240px] lg:text-[32px]">
+                <span
+                  aria-hidden="true"
+                  className="absolute -left-3 top-1/2 h-6 w-6 -translate-y-1/2 rotate-45 bg-black sm:-left-5 sm:h-10 sm:w-10"
+                />
+                <span className="relative z-10">Early Access</span>
               </div>
             </div>
 
-            <div className="flex w-full flex-col gap-4 sm:max-w-[260px] lg:justify-self-end lg:gap-8">
-              <TrialButton onClick={openSignup}>Try Now</TrialButton>
-              <TrialButton onClick={() => setIsModalOpen(true)}>Book Demo</TrialButton>
+            <div className="flex w-full flex-col items-start gap-10">
+              <div className="flex w-full flex-col items-start gap-4 text-black">
+                <h2 className="max-w-[1080px] text-[32px] font-medium leading-[1.08] sm:text-[42px] lg:text-[48px]">
+                  Free 30-Day Trial for Select Travel Businesses
+                </h2>
+                <div className="max-w-[1080px] text-[20px] font-normal leading-[2] sm:text-[24px] lg:text-[28px]">
+                  <p>Founding team-led onboarding, direct support, and early mover advantage.</p>
+                  <p>100 slots available on a first-come first-serve basis.</p>
+                </div>
+              </div>
+
+              <TrialButton className="max-w-[240px] text-[16px] sm:text-[18px]" onClick={openSignup}>
+                Claim Free Trial
+              </TrialButton>
             </div>
           </div>
         </div>

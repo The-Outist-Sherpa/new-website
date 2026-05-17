@@ -1,14 +1,19 @@
 import { NextRequest, NextResponse } from "next/server";
 
 type DemoRequestPayload = {
+  captchaAnswer?: unknown;
+  captchaLeft?: unknown;
+  captchaRight?: unknown;
   companyName?: unknown;
   countryCode?: unknown;
   fullName?: unknown;
   mobileNumber?: unknown;
 };
 
-const demoRequestTo = process.env.DEMO_REQUEST_TO ?? "Karthiklm92@gmail.com";
-const demoRequestFrom = process.env.DEMO_REQUEST_FROM ?? "The Outist <onboarding@resend.dev>";
+const demoRequestTo = process.env.DEMO_REQUEST_TO ?? "hello@theoutist.com";
+const demoRequestFrom = process.env.DEMO_REQUEST_FROM ?? "The Outist <hello@theoutist.com>";
+const textOnlyPattern = /^[A-Za-z\s.'’&()-]+$/;
+const mobilePattern = /^\d{6,15}$/;
 
 export async function POST(request: NextRequest) {
   let payload: DemoRequestPayload;
@@ -23,9 +28,24 @@ export async function POST(request: NextRequest) {
   const mobileNumber = cleanField(payload.mobileNumber);
   const countryCode = cleanField(payload.countryCode) || "+91";
   const companyName = cleanField(payload.companyName);
+  const captchaLeft = cleanNumber(payload.captchaLeft);
+  const captchaRight = cleanNumber(payload.captchaRight);
+  const captchaAnswer = cleanNumber(payload.captchaAnswer);
 
   if (!fullName || !mobileNumber || !companyName) {
     return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+  }
+
+  if (!textOnlyPattern.test(fullName) || !textOnlyPattern.test(companyName)) {
+    return NextResponse.json({ error: "Name and company cannot include numbers" }, { status: 400 });
+  }
+
+  if (!mobilePattern.test(mobileNumber)) {
+    return NextResponse.json({ error: "Mobile number must contain only digits" }, { status: 400 });
+  }
+
+  if (captchaLeft === null || captchaRight === null || captchaAnswer !== captchaLeft + captchaRight) {
+    return NextResponse.json({ error: "Captcha verification failed" }, { status: 400 });
   }
 
   const subject = `[${fullName}] The Outist - Demo Requiry`;
@@ -68,7 +88,12 @@ export async function POST(request: NextRequest) {
 
   if (!resendResponse.ok) {
     const errorText = await resendResponse.text();
-    console.error("Unable to send demo request email", errorText);
+    console.error("Unable to send demo request email", {
+      error: errorText,
+      from: demoRequestFrom,
+      status: resendResponse.status,
+      to: demoRequestTo,
+    });
 
     return NextResponse.json({ error: "Unable to send email" }, { status: 502 });
   }
@@ -78,4 +103,13 @@ export async function POST(request: NextRequest) {
 
 function cleanField(value: unknown) {
   return typeof value === "string" ? value.trim() : "";
+}
+
+function cleanNumber(value: unknown) {
+  const stringValue = cleanField(value);
+  if (!/^\d+$/.test(stringValue)) {
+    return null;
+  }
+
+  return Number(stringValue);
 }

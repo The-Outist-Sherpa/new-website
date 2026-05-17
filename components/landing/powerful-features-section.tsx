@@ -126,12 +126,12 @@ export function PowerfulFeaturesSection() {
       data-scroll-reveal
       className="scroll-reveal relative z-10 h-[580vh] bg-[#344700] px-5 py-20"
     >
-      <div className="sticky top-0 flex min-h-screen w-full flex-col items-center justify-start overflow-hidden pt-16 sm:pt-20 lg:pt-[72px]">
+      <div className="sticky top-0 flex min-h-screen w-full flex-col items-center justify-start overflow-hidden pt-12 sm:pt-20 lg:pt-[72px]">
         <h2 className="w-full max-w-[1270px] text-center text-[34px] font-medium leading-[1.2] text-white sm:text-[46px] sm:leading-[1.5]">
           Everything your team needs to close bookings faster!
         </h2>
 
-        <div className="relative mt-10 h-[600px] w-full max-w-[1180px] sm:mt-12 sm:h-[670px] lg:mt-8 lg:h-[710px]">
+        <div className="relative mt-8 h-[690px] w-full max-w-[1180px] sm:mt-12 sm:h-[760px] lg:mt-8 lg:h-[710px]">
           {FEATURES.map((slide, index) => (
             <FeatureSlideView
               key={slide.title}
@@ -166,10 +166,10 @@ function FeatureSlideView({
         active ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0",
       )}
     >
-      <div className="relative w-full max-w-[924px]">
+      <div className="relative flex w-full max-w-[924px] flex-col items-center">
         <div
           className={cn(
-            "relative flex h-[390px] w-full items-center justify-center overflow-hidden rounded-[20px] border border-[#cfd5de] bg-[#f0f3f7] transition-all duration-700 ease-sherpa sm:h-[520px] lg:h-[638px]",
+            "relative flex h-[300px] w-full items-center justify-center overflow-hidden rounded-[20px] border border-[#cfd5de] bg-[#f0f3f7] transition-all duration-700 ease-sherpa sm:h-[460px] lg:h-[638px]",
             active ? "translate-y-0 scale-100 opacity-100 blur-0" : "translate-y-8 scale-[0.985] opacity-0 blur-sm",
           )}
         >
@@ -185,7 +185,7 @@ function FeatureSlideView({
 
         <div
           className={cn(
-            "absolute left-1/2 top-[56%] w-[min(452px,calc(100vw-40px))] -translate-x-1/2 rounded-[30px] border border-sherpa-ink bg-white p-7 text-left shadow-[1px_4px_0_#000] transition-all duration-700 ease-sherpa sm:p-8 lg:left-auto lg:translate-x-0",
+            "relative mt-5 w-full rounded-[24px] border border-sherpa-ink bg-white p-5 text-left shadow-[1px_4px_0_#000] transition-all duration-700 ease-sherpa sm:w-[min(452px,calc(100vw-40px))] sm:p-7 lg:absolute lg:left-auto lg:mt-0 lg:translate-x-0 lg:rounded-[30px] lg:p-8",
             slide.cardPosition,
             active
               ? "translate-y-0 opacity-100 blur-0 delay-200"

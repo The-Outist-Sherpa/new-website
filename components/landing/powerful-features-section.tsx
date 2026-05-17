@@ -1,9 +1,9 @@
 "use client";
 
-import NextImage from "next/image";
 import { Brain, Clock3, Globe2, Image, Laptop, Palette } from "lucide-react";
 import type { ComponentType } from "react";
 import { useEffect, useRef, useState } from "react";
+import { Image as ReactImage } from "@/components/ui/image";
 import { cn } from "@/lib/utils";
 
 type FeatureSlide = {
@@ -175,7 +175,7 @@ function FeatureSlideView({
             active ? "translate-y-0 scale-100 opacity-100 blur-0" : "translate-y-8 scale-[0.985] opacity-0 blur-sm",
           )}
         >
-          <NextImage
+          <ReactImage
             src={slide.imageSrc}
             alt={slide.imageAlt}
             fill

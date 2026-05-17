@@ -1,9 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import { Loader2, Send, ShieldCheck, X } from "lucide-react";
 import { FormEvent, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
+import { Image } from "@/components/ui/image";
 import { cn } from "@/lib/utils";
 
 const SIGNUP_URL = "about:blank";
@@ -128,23 +128,9 @@ export function TrialSection() {
       return;
     }
 
-    try {
-      const response = await fetch("/api/demo-request", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formState),
-      });
-
-      if (!response.ok) {
-        throw new Error("Unable to submit demo request");
-      }
-
+    window.setTimeout(() => {
       setFormStatus("success");
-    } catch {
-      setFormStatus("error");
-    }
+    }, 500);
   };
 
   const openSignup = () => {

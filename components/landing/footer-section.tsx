@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { Mail, MessageCircle, Phone } from "lucide-react";
+import { Image } from "@/components/ui/image";
 import { cn } from "@/lib/utils";
 
 const contactActions = [

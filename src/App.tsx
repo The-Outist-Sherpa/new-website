@@ -8,7 +8,7 @@ import { ScrollRevealController } from "@/components/landing/scroll-reveal-contr
 import { SiteHeader } from "@/components/landing/site-header";
 import { TrialSection } from "@/components/landing/trial-section";
 
-export default function Home() {
+export default function App() {
   return (
     <main className="relative isolate min-h-screen bg-sherpa-bg text-sherpa-ink">
       <AmbientMouseEffect />

@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import { Menu } from "lucide-react";
+import { Image } from "@/components/ui/image";
 import { navItems } from "@/lib/content";
 import { cn } from "@/lib/utils";
 import {

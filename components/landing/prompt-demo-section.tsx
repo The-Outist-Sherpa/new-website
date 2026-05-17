@@ -1,9 +1,9 @@
 "use client";
 
 import { FileText, Globe, Mic, Zap } from "lucide-react";
-import Image from "next/image";
 import type { ComponentType } from "react";
 import { useEffect, useRef, useState } from "react";
+import { Image } from "@/components/ui/image";
 import { cn } from "@/lib/utils";
 
 const PROMPT_TEXT =

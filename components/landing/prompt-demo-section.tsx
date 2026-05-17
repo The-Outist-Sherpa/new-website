@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 const PROMPT_TEXT =
   "Modify the ‘Majestic Zanskar’ itinerary from our catalogue for Ms. Noa Levi. Group size 8. Include an acclimatization hike to Patalsu on Day 2. Meals on MAP on Day 1 and 8, remaining days AP. Cost per person is INR 1,58,000 (incl 5% GST).";
 
-const TYPE_INTERVAL_MS = 42;
+const TYPE_INTERVAL_MS = 30;
 const GENERATING_DURATION_MS = 4200;
 const LINK_PREVIEW_URL = "https://tours.outist.app/s/qaWXDawni?v=04Us-";
 const PDF_PREVIEW_URL = "";

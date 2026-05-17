@@ -13,6 +13,7 @@ type FeatureSlide = {
   icon: ComponentType<{ className?: string; strokeWidth?: number; "aria-hidden"?: boolean }>;
   imageAlt: string;
   imageSrc: string;
+  overlayLabel?: string;
   title: string;
 };
 
@@ -43,6 +44,7 @@ const FEATURES: FeatureSlide[] = [
     imageAlt: "Customize proposal branding, font, and colors",
     accent: "text-[#337dff]",
     cardPosition: "lg:left-[-117px] lg:top-[43%]",
+    overlayLabel: "Your Brand Guidelines",
   },
   {
     title: "Plan smarter. Price better.",
@@ -124,14 +126,14 @@ export function PowerfulFeaturesSection() {
       id="features"
       ref={sectionRef}
       data-scroll-reveal
-      className="scroll-reveal relative z-10 h-[580vh] bg-[#344700] px-5 py-20"
+      className="scroll-reveal relative z-10 h-[560vh] bg-[#101403] px-5 py-12"
     >
-      <div className="sticky top-0 flex min-h-screen w-full flex-col items-center justify-start overflow-hidden pt-12 sm:pt-20 lg:pt-[72px]">
+      <div className="sticky top-0 flex min-h-screen w-full flex-col items-center justify-start overflow-hidden pt-10 sm:pt-14 lg:pt-12">
         <h2 className="w-full max-w-[1270px] text-center text-[34px] font-medium leading-[1.2] text-white sm:text-[46px] sm:leading-[1.5]">
           Everything your team needs to close bookings faster!
         </h2>
 
-        <div className="relative mt-8 h-[690px] w-full max-w-[1180px] sm:mt-12 sm:h-[760px] lg:mt-8 lg:h-[710px]">
+        <div className="relative mt-12 h-[690px] w-full max-w-[1180px] sm:mt-16 sm:h-[760px] lg:mt-16 lg:h-[710px]">
           {FEATURES.map((slide, index) => (
             <FeatureSlideView
               key={slide.title}
@@ -181,11 +183,16 @@ function FeatureSlideView({
             className="object-cover"
             priority={slideNumber === 1}
           />
+          {slide.overlayLabel ? (
+            <div className="absolute left-[22%] top-[12%] hidden rounded-[20px] bg-white px-8 py-5 text-[28px] font-medium leading-[1.15] text-[#2f2f2f] shadow-[0_0_26px_rgba(204,243,95,0.55)] md:block">
+              {slide.overlayLabel}
+            </div>
+          ) : null}
         </div>
 
         <div
           className={cn(
-            "relative mt-5 w-full rounded-[24px] border border-sherpa-ink bg-white p-5 text-left shadow-[1px_4px_0_#000] transition-all duration-700 ease-sherpa sm:w-[min(452px,calc(100vw-40px))] sm:p-7 lg:absolute lg:left-auto lg:mt-0 lg:translate-x-0 lg:rounded-[30px] lg:p-8",
+            "relative mt-5 w-full rounded-[24px] border-2 border-sherpa-ink bg-white p-5 text-left shadow-[1px_6px_0_#000] transition-all duration-700 ease-sherpa sm:w-[min(452px,calc(100vw-40px))] sm:p-7 lg:absolute lg:left-auto lg:mt-0 lg:translate-x-0 lg:rounded-[30px] lg:p-8",
             slide.cardPosition,
             active
               ? "translate-y-0 opacity-100 blur-0 delay-200"

@@ -1,4 +1,4 @@
-const audiences = ["Tour Operators", "Travel Agents", "DMCs", "Tour Guides", "Influencers"];
+const audiences = ["Tour Operators", "Travel Agents", "DMCs", "Tour Guides", "Travel Influencer"];
 
 export function AudienceSection() {
   return (
@@ -31,7 +31,7 @@ export function AudienceSection() {
 
         <p
           style={{ transitionDelay: "520ms" }}
-          className="scroll-reveal-child max-w-[920px] text-[18px] font-normal leading-[1.35] text-black sm:text-[20px] sm:leading-[1.08]"
+          className="scroll-reveal-child max-w-[920px] text-[18px] font-normal leading-[1.25] text-black sm:text-[22px] lg:text-[24px]"
         >
           Outist gives you <strong className="font-semibold">an unfair advantage</strong>
         </p>

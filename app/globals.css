@@ -373,35 +373,35 @@ select {
 }
 
 .sherpa-orb.is-listening {
-  animation: orb-breathe 1.9s cubic-bezier(0.37, 0, 0.2, 1) infinite;
+  animation: orb-breathe 1.45s cubic-bezier(0.37, 0, 0.2, 1) infinite;
 }
 
 .sherpa-orb.is-listening .orb-glow {
-  animation: orb-glow 1.9s ease-in-out infinite;
+  animation: orb-glow 1.45s ease-in-out infinite;
 }
 
 .sherpa-orb.is-listening .orb-voice-a {
-  animation: orb-voice-a 3.8s ease-in-out infinite;
+  animation: orb-voice-a 3s ease-in-out infinite;
 }
 
 .sherpa-orb.is-listening .orb-voice-b {
-  animation: orb-voice-b 3.2s ease-in-out infinite;
+  animation: orb-voice-b 2.55s ease-in-out infinite;
 }
 
 .sherpa-orb.is-listening .orb-voice-c {
-  animation: orb-voice-c 2.7s ease-in-out infinite;
+  animation: orb-voice-c 2.15s ease-in-out infinite;
 }
 
 .sherpa-orb.is-listening .orb-base {
-  animation: orb-swirl 5.4s linear infinite;
+  animation: orb-swirl 4.25s linear infinite;
 }
 
 .sherpa-orb.is-listening .orb-light {
-  animation: orb-swirl-reverse 3.9s linear infinite;
+  animation: orb-swirl-reverse 3.05s linear infinite;
 }
 
 .sherpa-orb.is-listening .orb-shimmer {
-  animation: orb-wave 2.4s ease-in-out infinite;
+  animation: orb-wave 1.9s ease-in-out infinite;
 }
 
 .animate-caret {

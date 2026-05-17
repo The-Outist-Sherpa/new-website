@@ -66,34 +66,37 @@ export function FooterSection() {
           </div>
         </div>
 
-        <div className="flex w-full max-w-[1011px] flex-col items-center justify-center border-t border-white/20 pt-12 sm:pt-[60px]">
-          <div className="flex flex-col items-center justify-center gap-6 sm:flex-row">
+        <div className="flex w-full max-w-[1011px] flex-col gap-10 border-t border-white/20 pt-12 sm:pt-[60px] lg:flex-row lg:items-center lg:justify-between">
+          <div className="flex flex-col items-center justify-center gap-6 sm:flex-row lg:justify-start">
             <img
               src="/assets/footer-outist-logo-white.svg"
               alt="The Outist"
-              className="h-[46px] w-[210px] object-contain sm:h-[52px] sm:w-[239px]"
+              className="h-[46px] w-[150px] object-contain sm:h-[52px] sm:w-[171px]"
             />
-            <div className="relative h-[94px] w-[112px] overflow-hidden rounded-[16px] sm:h-[104px] sm:w-[124px]">
+            <span aria-hidden="true" className="hidden h-[41px] w-px bg-white/28 sm:block" />
+            <div className="relative h-[64px] w-[76px] overflow-hidden rounded-[10px]">
               <Image
                 src="/assets/footer-affiliation.png"
                 alt="Adventure Tour Operators Association of India Allied"
                 fill
-                sizes="124px"
+                sizes="76px"
                 className="object-cover"
               />
             </div>
           </div>
-        </div>
 
-        <div className="flex w-full flex-col items-center gap-10">
-          <img
-            src="/assets/footer-outist-wordmark.svg"
-            alt="The Outist"
-            className="h-[90px] w-full max-w-[913px] object-contain sm:h-[150px] lg:h-[200px]"
-          />
-          <p className="text-center text-[14px] font-normal leading-[1.45]">
-            © 2026, Outist Experiences Pvt. Ltd.
-          </p>
+          <div className="flex flex-col items-center justify-center gap-4 text-[14px] font-normal leading-[1.45] text-white sm:flex-row sm:gap-8">
+            <a
+              href="#"
+              className="transition-colors hover:text-white/75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/35"
+            >
+              Terms and Conditions
+            </a>
+            <span aria-hidden="true" className="hidden h-4 w-px bg-white/25 sm:block" />
+            <p className="text-center text-white/60">
+              © 2026, Outist Experiences Pvt. Ltd.
+            </p>
+          </div>
         </div>
       </div>
     </footer>

@@ -61,6 +61,12 @@ export function SiteHeader() {
             </OutistButton>
           </div>
 
+          <div className="ml-auto flex items-center gap-3 lg:hidden">
+            <OutistButton asChild className="min-h-11 px-5 text-[15px]">
+              <a href="#try">Try</a>
+            </OutistButton>
+          </div>
+
           <Sheet>
             <SheetTrigger asChild>
               <button
@@ -73,7 +79,8 @@ export function SiteHeader() {
             </SheetTrigger>
             <SheetContent
               side="right"
-              className="border-sherpa-ink/10 bg-white p-0 text-sherpa-ink"
+              className="border-sherpa-ink/10 bg-white p-0 text-sherpa-ink backdrop-blur-none"
+              style={{ background: "#ffffff", backdropFilter: "none" }}
             >
               <SheetHeader className="border-sherpa-ink/10 bg-white p-6">
                 <SheetTitle className="text-[20px] font-medium text-sherpa-ink">
@@ -93,11 +100,6 @@ export function SiteHeader() {
                 ))}
               </div>
               <div className="mt-auto flex flex-col gap-4 border-t border-sherpa-ink/10 p-6">
-                <SheetClose asChild>
-                  <OutistButton asChild className="w-full">
-                    <a href="#try">Try for Free</a>
-                  </OutistButton>
-                </SheetClose>
                 <SheetClose asChild>
                   <OutistButton asChild variant="secondary" className="w-full">
                     <button type="button" onClick={openDemoModal}>

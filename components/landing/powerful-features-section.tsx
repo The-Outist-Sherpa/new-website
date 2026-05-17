@@ -13,7 +13,6 @@ type FeatureSlide = {
   icon: ComponentType<{ className?: string; strokeWidth?: number; "aria-hidden"?: boolean }>;
   imageAlt: string;
   imageSrc: string;
-  overlayLabel?: string;
   title: string;
 };
 
@@ -44,7 +43,6 @@ const FEATURES: FeatureSlide[] = [
     imageAlt: "Customize proposal branding, font, and colors",
     accent: "text-[#337dff]",
     cardPosition: "lg:left-[-117px] lg:top-[43%]",
-    overlayLabel: "Your Brand Guidelines",
   },
   {
     title: "Plan smarter. Price better.",
@@ -53,7 +51,7 @@ const FEATURES: FeatureSlide[] = [
     imageSrc: "/assets/brainstorm.png",
     imageAlt: "Brainstorm trip ideas and calculate proposal pricing",
     accent: "text-[#18b9e5]",
-    cardPosition: "lg:right-[-112px] lg:top-[35%]",
+    cardPosition: "lg:right-[-240px] lg:top-[35%]",
   },
   {
     title: "Sell globally, personalize locally",
@@ -183,11 +181,6 @@ function FeatureSlideView({
             className="object-cover"
             priority={slideNumber === 1}
           />
-          {slide.overlayLabel ? (
-            <div className="absolute left-[22%] top-[12%] hidden rounded-[20px] bg-white px-8 py-5 text-[28px] font-medium leading-[1.15] text-[#2f2f2f] shadow-[0_0_26px_rgba(204,243,95,0.55)] md:block">
-              {slide.overlayLabel}
-            </div>
-          ) : null}
         </div>
 
         <div

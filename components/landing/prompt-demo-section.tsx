@@ -1,8 +1,7 @@
 "use client";
 
-import { FileText, Globe, Mic, Zap } from "lucide-react";
+import { Mic } from "lucide-react";
 import Image from "next/image";
-import type { ComponentType } from "react";
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
@@ -11,11 +10,9 @@ const PROMPT_TEXT =
 
 const TYPE_INTERVAL_MS = 30;
 const GENERATING_DURATION_MS = 4200;
-const LINK_PREVIEW_URL = "https://tours.outist.app/s/qaWXDawni?v=04Us-";
-const PDF_PREVIEW_URL = "";
+const LINK_PREVIEW_URL = "https://tours.outist.app/s/qaWXDawni?v=Cy0GN";
 
 type DemoPhase = "idle" | "recording" | "generating" | "complete";
-type OutputType = "link" | "pdf";
 
 export function PromptDemoSection() {
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -203,99 +200,17 @@ function StatusText({ phase }: { phase: DemoPhase }) {
 }
 
 function GeneratedProposalFrame() {
-  const [outputType, setOutputType] = useState<OutputType>("link");
-  const isPdf = outputType === "pdf";
-  const previewUrl = isPdf ? PDF_PREVIEW_URL : LINK_PREVIEW_URL;
-
   return (
     <div className="flex w-full flex-col items-start gap-[25px]">
-      <div className="flex w-full flex-col gap-4 md:flex-row md:items-center md:justify-between">
-        <div className="flex w-full min-w-0 items-center gap-2 text-sherpa-ink md:w-[262px]">
-          <Zap aria-hidden="true" className="size-5 fill-[#16c9e8] text-[#16c9e8]" strokeWidth={2.5} />
-          <p className="text-[16px] font-normal leading-[1.45] sm:text-[17px]">
-            Generated in less than a min
-          </p>
-        </div>
-
-        <div className="flex flex-wrap items-center gap-4 pb-2 pr-3 md:gap-6 md:pr-4">
-          <SegmentedControl
-            items={[
-              { icon: Globe, label: "Link", value: "link", active: outputType === "link" },
-              { icon: FileText, label: "PDF", value: "pdf", active: outputType === "pdf" },
-            ]}
-            onSelect={(value) => setOutputType(value as OutputType)}
+      <div className="flex h-[460px] w-full items-center justify-center rounded-[20px] border border-[#cfd5de] bg-[#f0f3f7] px-3 py-3 sm:h-[520px] sm:px-4 lg:h-[638px]">
+        <div className="relative h-full w-full overflow-hidden rounded-[16px] bg-white shadow-[0_1px_0_rgba(32,44,61,0.05)] transition-all duration-500 ease-sherpa">
+          <iframe
+            title="Generated proposal link preview"
+            src={LINK_PREVIEW_URL}
+            className="h-full w-full border-0 bg-white"
           />
         </div>
       </div>
-
-      <div className="flex h-[460px] w-full items-center justify-center rounded-[20px] border border-[#cfd5de] bg-[#f0f3f7] px-3 py-3 sm:h-[520px] sm:px-4 lg:h-[638px]">
-        <div className="relative h-full w-full overflow-hidden rounded-[16px] bg-white shadow-[0_1px_0_rgba(32,44,61,0.05)] transition-all duration-500 ease-sherpa">
-          {previewUrl ? (
-            <iframe
-              key={outputType}
-              title={isPdf ? "Generated proposal PDF" : "Generated proposal link preview"}
-              src={previewUrl}
-              className="h-full w-full border-0 bg-white"
-            />
-          ) : (
-            <div className="flex h-full w-full items-center justify-center">
-              <p className="text-center text-base font-medium leading-[1.25] text-black">
-                {isPdf ? "PDF preview link pending" : "iframe"}
-              </p>
-            </div>
-          )}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-type SegmentItem = {
-  active: boolean;
-  icon: ComponentType<{ className?: string; strokeWidth?: number; "aria-hidden"?: boolean }>;
-  label: string;
-  value: string;
-};
-
-function SegmentedControl({
-  disabled = false,
-  items,
-  onSelect,
-}: {
-  disabled?: boolean;
-  items: SegmentItem[];
-  onSelect: (value: string) => void;
-}) {
-  return (
-    <div
-      className={cn(
-        "flex shrink-0 items-center rounded-sherpa-pill border border-sherpa-ink bg-white p-1 shadow-[1px_2px_0_#202c3d] transition-opacity duration-medium",
-        disabled && "pointer-events-none opacity-40",
-      )}
-      aria-disabled={disabled}
-    >
-      {items.map((item, index) => {
-        const Icon = item.icon;
-
-        return (
-          <button
-            type="button"
-            key={item.label}
-            onClick={() => onSelect(item.value)}
-            aria-pressed={item.active}
-            disabled={disabled}
-            className={cn(
-              "flex items-center justify-center gap-2 px-4 py-3 text-[14px] font-medium leading-[1.45] transition-colors duration-fast focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sherpa-ink/25",
-              item.active ? "bg-[#dfe3e8] text-sherpa-ink" : "text-sherpa-muted",
-              index === 0 && "rounded-bl-sherpa-pill rounded-br-[4px] rounded-tl-sherpa-pill rounded-tr-[4px]",
-              index === items.length - 1 && "rounded-bl-[4px] rounded-br-sherpa-pill rounded-tl-[4px] rounded-tr-sherpa-pill",
-            )}
-          >
-            <Icon aria-hidden className="size-5" strokeWidth={2} />
-            <span className="truncate">{item.label}</span>
-          </button>
-        );
-      })}
     </div>
   );
 }

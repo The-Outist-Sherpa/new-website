@@ -347,13 +347,11 @@ export function TrialSection() {
               </div>
 
               <div className="flex flex-col items-end gap-2 lg:h-[148px] lg:flex-1 lg:justify-center">
-                <div className="relative mt-0 flex h-[38px] min-w-[120px] items-center justify-center rounded-[6px] bg-black px-5 text-[16px] font-normal leading-[1.58] text-white sm:h-[64px] sm:min-w-[240px] sm:rounded-[14px] sm:px-7 sm:text-[22px] lg:h-[76px] lg:min-w-[403px] lg:text-[29px]">
-                  <span
-                    aria-hidden="true"
-                    className="absolute -left-3 top-1/2 h-6 w-6 -translate-y-1/2 rotate-45 bg-black sm:-left-5 sm:h-10 sm:w-10"
-                  />
-                  <span className="relative z-10 font-mono">100 Slots Available</span>
-                </div>
+                <img
+                  src="/assets/trial-slots-tag.svg"
+                  alt="100 Slots Available"
+                  className="h-[38px] w-[202px] max-w-[46vw] sm:h-[64px] sm:w-[339px] lg:h-[76px] lg:w-[403px]"
+                />
                 <p className="hidden w-full max-w-[361px] text-left text-[20px] font-normal leading-[2] text-black sm:block lg:text-[24px]">
                   on a first-come first-serve basis.
                 </p>

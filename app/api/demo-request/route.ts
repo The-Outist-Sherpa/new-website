@@ -10,7 +10,9 @@ type DemoRequestPayload = {
   mobileNumber?: unknown;
 };
 
-const demoRequestTo = process.env.DEMO_REQUEST_TO ?? "hello@theoutist.com";
+const demoRequestTo = parseEmailList(
+  process.env.DEMO_REQUEST_TO ?? "hello@theoutist.com,integrations@theoutist.com",
+);
 const demoRequestFrom = process.env.DEMO_REQUEST_FROM ?? "The Outist <hello@theoutist.com>";
 const textOnlyPattern = /^[A-Za-z\s.'’&()-]+$/;
 const mobilePattern = /^\d{6,15}$/;
@@ -112,4 +114,11 @@ function cleanNumber(value: unknown) {
   }
 
   return Number(stringValue);
+}
+
+function parseEmailList(value: string) {
+  return value
+    .split(",")
+    .map((email) => email.trim())
+    .filter(Boolean);
 }

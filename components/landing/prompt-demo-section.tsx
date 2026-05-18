@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
 const PROMPT_TEXT =
-  "Create a proposal for Manali Trip with 5 Adults for 7Days with 4-Star Hotel Accommodation, Premium Transport options, All Food Included. Start point is Chennai, Exclude Flight cost.";
+  "Modify the ‘Majestic Zanskar’ itinerary from our catalogue for Ms. Noa Levi. Group size 8. Include an acclimatization hike to Patalsu on Day 2. Meals on MAP on Day 1 and 8, remaining days AP. Cost per person is INR 1,58,000 (incl 5% GST).";
 
 const TYPE_INTERVAL_MS = 30;
 const GENERATING_DURATION_MS = 4200;
@@ -207,12 +207,12 @@ function StatusText({ phase }: { phase: DemoPhase }) {
 function GeneratedProposalFrame() {
   return (
     <div className="flex w-full flex-col items-start gap-[25px]">
-      <div className="flex h-[760px] w-full items-center justify-center rounded-[28px] border border-[#cfd5de] bg-[#f0f3f7] px-2 py-4 sm:h-[520px] sm:rounded-[20px] sm:px-4 sm:py-3 lg:h-[638px]">
-        <div className="relative h-full w-full max-w-[390px] overflow-hidden rounded-[36px] border-[8px] border-black bg-white shadow-[0_20px_70px_rgba(32,44,61,0.18)] transition-all duration-500 ease-sherpa sm:max-w-none sm:rounded-[16px] sm:border-0 sm:shadow-[0_1px_0_rgba(32,44,61,0.05)]">
+      <div className="flex h-[760px] w-full items-center justify-center sm:h-[520px] lg:h-[638px]">
+        <div className="relative h-full w-full max-w-[390px] overflow-hidden rounded-[36px] border-[8px] border-black bg-white shadow-[0_20px_70px_rgba(32,44,61,0.18)] transition-all duration-500 ease-sherpa sm:max-w-none sm:rounded-[20px] sm:border sm:border-[#cfd5de] sm:shadow-[0_18px_60px_rgba(32,44,61,0.12)]">
           <iframe
             title="Generated proposal link preview"
             src={LINK_PREVIEW_URL}
-            className="h-full w-full border-0 bg-white"
+            className="h-full w-full border-0 bg-white xl:absolute xl:left-0 xl:top-0 xl:h-[726px] xl:w-[960px] xl:origin-top-left xl:scale-[0.879]"
           />
         </div>
       </div>

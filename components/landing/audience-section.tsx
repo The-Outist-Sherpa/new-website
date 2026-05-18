@@ -1,4 +1,4 @@
-const audiences = ["Tour Operators", "Travel Agents", "DMCs", "Tour Guides", "Travel Influencer"];
+const audiences = ["Tour Operators", "Travel Agents", "DMCs", "Tour Guides", "Travel Influencers"];
 
 export function AudienceSection() {
   return (

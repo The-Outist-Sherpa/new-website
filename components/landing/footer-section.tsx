@@ -67,14 +67,14 @@ export function FooterSection() {
         </div>
 
         <div className="flex w-full max-w-[1011px] flex-col gap-10 border-t border-white/20 pt-12 sm:pt-[60px] lg:flex-row lg:items-center lg:justify-between">
-          <div className="flex flex-col items-center justify-center gap-6 sm:flex-row lg:justify-start">
+          <div className="flex flex-row items-center justify-center gap-5 sm:gap-6 lg:justify-start">
             <img
               src="/assets/footer-outist-logo-white.svg"
               alt="The Outist"
-              className="h-[46px] w-[150px] object-contain sm:h-[52px] sm:w-[171px]"
+              className="h-[42px] w-[138px] object-contain sm:h-[52px] sm:w-[171px]"
             />
-            <span aria-hidden="true" className="hidden h-[41px] w-px bg-white/28 sm:block" />
-            <div className="relative h-[64px] w-[76px] overflow-hidden rounded-[10px]">
+            <span aria-hidden="true" className="h-[41px] w-px shrink-0 bg-white/28" />
+            <div className="relative h-[58px] w-[69px] shrink-0 overflow-hidden rounded-[10px] sm:h-[64px] sm:w-[76px]">
               <Image
                 src="/assets/footer-affiliation.png"
                 alt="Adventure Tour Operators Association of India Allied"
@@ -87,7 +87,7 @@ export function FooterSection() {
 
           <div className="flex flex-col items-center justify-center gap-4 text-[14px] font-normal leading-[1.45] text-white sm:flex-row sm:gap-8">
             <a
-              href="https://outist.app/terms"
+              href="https://beta.outist.app/terms"
               className="transition-colors hover:text-white/75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/35"
               target="_blank"
               rel="noreferrer"

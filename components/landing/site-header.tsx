@@ -52,7 +52,7 @@ export function SiteHeader() {
           <div className={cn("hidden shrink-0 items-center gap-3 lg:flex")}>
             <OutistButton asChild className="hidden sm:inline-flex">
               <a href={BETA_APP_URL} target="_blank" rel="noreferrer">
-                Start for Free
+                Login
               </a>
             </OutistButton>
             <OutistButton asChild variant="secondary" className="px-5 sm:px-6">
@@ -65,7 +65,7 @@ export function SiteHeader() {
           <div className="ml-auto flex items-center gap-3 lg:hidden">
             <OutistButton asChild className="min-h-11 px-5 text-[15px]">
               <a href={BETA_APP_URL} target="_blank" rel="noreferrer">
-                Start Free
+                Login
               </a>
             </OutistButton>
           </div>

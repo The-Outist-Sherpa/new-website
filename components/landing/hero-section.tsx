@@ -1,7 +1,7 @@
 import { Clock3, CreditCard, Zap } from "lucide-react";
 import { OutistButton } from "./outist-button";
 
-const BETA_APP_URL = "https://beta.outist.app";
+const BETA_APP_URL = "https://platform.outist.app";
 
 export function HeroSection() {
   return (

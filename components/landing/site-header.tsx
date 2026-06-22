@@ -15,7 +15,7 @@ import {
 import { OutistButton } from "./outist-button";
 
 const GOOGLE_FORM_URL = "https://forms.gle/tfSK7WaLfgPHapza7";
-const BETA_APP_URL = "https://beta.outist.app";
+const BETA_APP_URL = "https://platform.outist.app";
 
 export function SiteHeader() {
   return (

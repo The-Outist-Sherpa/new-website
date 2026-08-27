@@ -16,9 +16,9 @@ const outfit = localFont({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://outist.app"),
-  title: "The Outist — AI Travel Proposal Builder for Travel Teams",
+  title: "Outist - Your 24x7 Travel Proposal Expert",
   description:
-    "Create beautiful client-ready travel proposals in minutes. The Outist helps travel agents, tour operators, DMCs, and experience hosts generate itineraries, images, maps, pricing, and shareable proposals faster.",
+    "Turn hours of travel planning into beautiful, client-ready proposals in minutes, from anywhere. Deliver deeply personalized experiences at speed, build stronger brand trust, and drive more bookings.",
   keywords: [
     "AI travel proposal builder",
     "travel proposal software",
@@ -31,32 +31,18 @@ export const metadata: Metadata = {
     "travel agency automation",
     "client proposal builder",
   ],
-  icons: {
-    icon: "/favicon.png",
-    shortcut: "/favicon.png",
-    apple: "/favicon.png",
-  },
   openGraph: {
-    title: "The Outist — AI Travel Proposal Builder",
+    title: "Outist - Your 24x7 Travel Proposal Expert",
     description:
-      "Turn travel enquiries into beautiful client-ready proposals with itinerary, images, maps, pricing, and shareable links.",
+      "Turn hours of travel planning into beautiful, client-ready proposals in minutes, from anywhere. Deliver deeply personalized experiences at speed, build stronger brand trust, and drive more bookings.",
     type: "website",
-    siteName: "The Outist",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "The Outist AI Travel Proposal Builder",
-      },
-    ],
+    siteName: "Outist",
   },
   twitter: {
     card: "summary_large_image",
-    title: "The Outist — AI Travel Proposal Builder",
+    title: "Outist - Your 24x7 Travel Proposal Expert",
     description:
-      "Create client-ready travel proposals in minutes with AI-powered itineraries, images, maps, and pricing.",
-    images: ["/og-image.png"],
+      "Turn hours of travel planning into beautiful, client-ready proposals in minutes, from anywhere. Deliver deeply personalized experiences at speed, build stronger brand trust, and drive more bookings.",
   },
 };
 
